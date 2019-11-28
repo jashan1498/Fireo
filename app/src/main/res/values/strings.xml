@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Fireo</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">forget password</string>
+    <string name="login">Login</string>
+    <string name="qr_code">qr code</string>
+    <string name="home">home</string>
+    <string name="devices">devices</string>
+    <string name="map">map</string>
+    <string name="places">places</string>
+    <string name="user">user</string>
+
+
+</resources>
