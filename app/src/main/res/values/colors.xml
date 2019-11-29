@@ -4,7 +4,17 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorPrimaryLight">#FFBEBC</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="hint_color">#CDCDCD</color>
+    <color name="hint_color">#ECE8E8</color>
     <color name="gradient_color1">#E03E3E</color>
     <color name="gradient_color2">#EA4755</color>
+    <color name="card_bg">#F36064</color>
+
+
+    <color name="card_bg_main">#6E57FF</color>
+    <color name="card_bg_main2">#359CE7</color>
+    <color name="card_mini_bg">#1D4350</color>
+    <color name="card_mini_bg2">#A43931</color>
+    <color name="dark_red">#8E0E00</color>
+    <color name="dark">#1F1C18</color>
+
 </resources>

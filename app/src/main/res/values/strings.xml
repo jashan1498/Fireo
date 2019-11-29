@@ -6,11 +6,20 @@
     <string name="forgot_password">forget password</string>
     <string name="login">Login</string>
     <string name="qr_code">qr code</string>
-    <string name="home">home</string>
-    <string name="devices">devices</string>
-    <string name="map">map</string>
-    <string name="places">places</string>
-    <string name="user">user</string>
+    <string name="home">Home</string>
+    <string name="devices">Devices</string>
+    <string name="map">Map</string>
+    <string name="places">Places</string>
+    <string name="user">User</string>
+    <string name="total_devices">Total Devices</string>
+    <string name="devices_status">Devices Status</string>
+    <string name="working_devices">Working Devices</string>
+    <string name="faulty_devices">Faulty Devices</string>
+    <string name="temprature">Temprature</string>
+    <string name="battery_low">Battery Low</string>
+    <string name="network">Network</string>
+    <string name="pressure">Pressure</string>
+    <string name="device_id">Device ID :</string>
 
 
 </resources>
