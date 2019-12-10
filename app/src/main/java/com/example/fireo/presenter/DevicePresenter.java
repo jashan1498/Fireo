@@ -5,9 +5,24 @@ import com.example.fireo.DevicesFragment;
 public class DevicePresenter {
 
     DevicesFragment fragment;
+    boolean animationActive = false;
 
     public void init(DevicesFragment fragment) {
+        this.fragment = fragment;
+        fragment.init();
         fragment.setUpRecyclerView();
+//        fragment.setUpFabMenu();
+        fragment.dummy();
+    }
+
+    public void toggle() {
+        if (animationActive)
+            fragment.hideRecyclerAnimation();
+        else
+            fragment.showRecyclerAnimation();
+
+        animationActive = !animationActive;
+
     }
 
 

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "298260451234",
+    "firebase_url": "https://fireo-98406.firebaseio.com",
+    "project_id": "fireo-98406",
+    "storage_bucket": "fireo-98406.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298260451234:android:eb2012ba013d25ec6d6cfb",
+        "android_client_info": {
+          "package_name": "com.example.fireo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298260451234-ls327604k39j5hlk4uo2bfn2lcmnv3uv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWSNw8fynS-uwU1CMjiJWtrbwmSbkXZgU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298260451234-ls327604k39j5hlk4uo2bfn2lcmnv3uv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

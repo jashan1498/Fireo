@@ -1,10 +1,13 @@
 package com.example.fireo;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,11 +18,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.fireo.FloatingActionButton.FabItem;
+import com.example.fireo.FloatingActionButton.FabMenu;
+import com.example.fireo.FloatingActionButton.FabMenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseApplication {
 
     BottomNavigationView bottomNavigationView;
     FragmentTransaction transaction;
@@ -42,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         initFragments();
 
     }
+
+
 
     private void initFragments() {
         manager = getSupportFragmentManager();
