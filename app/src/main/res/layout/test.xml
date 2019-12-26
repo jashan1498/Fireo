@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="button 2 " />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="ofejfjwf"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:scrollHorizontally="false"
+            android:ellipsize="none"
+            android:textColor="@android:color/white"
+            android:text="在进入大学之前总是对大学充满了无限憧憬有丰富的社团活动等等。还记得在大一的时候看见了院学生会的招募，选了一个自己想去的部门，但是报名之后才发现有面试的阶段。在面试的过程中学长学姐也问了我很多问题，而我也很大声毫无畏惧地回答了所有的问题。后来看见复试名单上没有自己的名字，以为自己进不了学生会了但是随后发现不用参加复试而直接进入了后来有一次我找到机会问了部长他说因为在初试阶段的表现较好,有为同学们服务的精神，最后一定要做好自己。这种精神也一直在陪伴着是我的成长。"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

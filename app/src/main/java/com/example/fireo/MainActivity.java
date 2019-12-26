@@ -1,7 +1,6 @@
 package com.example.fireo;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,23 +10,22 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.fireo.FloatingActionButton.FabItem;
-import com.example.fireo.FloatingActionButton.FabMenu;
-import com.example.fireo.FloatingActionButton.FabMenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainActivity extends BaseApplication {
 
+    public static int QR_SCAN_REQUEST_CODE = 129234;
     BottomNavigationView bottomNavigationView;
     FragmentTransaction transaction;
     FragmentManager manager;
@@ -49,7 +47,6 @@ public class MainActivity extends BaseApplication {
         initFragments();
 
     }
-
 
 
     private void initFragments() {
@@ -124,9 +121,31 @@ public class MainActivity extends BaseApplication {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.qr_scan) {
-            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+            new IntentIntegrator(this)
+                    .setCaptureActivity(QrScanActivity.class)
+                    .initiateScan();
+
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() == null) {
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+            } else {
+                String results = result.getContents();
+                DeviceDetail.startActivityWithString(results, this);
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    public void fabItemClicked(View view) {
     }
 }

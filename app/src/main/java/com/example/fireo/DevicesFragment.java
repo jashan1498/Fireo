@@ -1,6 +1,7 @@
 package com.example.fireo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +23,19 @@ import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 
+import static com.example.fireo.DeviceDetail.DEVICE_DETAIL_DATA;
+
+
 public class DevicesFragment extends Fragment implements DevicePresenter.View {
-    public static final String TAG = "DEVICES_FRAGMENT";
+    static final String TAG = "DEVICES_FRAGMENT";
     private RecyclerView devicesView;
     private FloatingActionMenu fabMenu;
     private MotionLayout motionLayout;
     private DevicePresenter presenter;
     private View view;
     private Context context;
+    private DeviceRecyclerAdapter.DeviceInfoViewOnClickListener infoViewOnClickListener;
+
 
     @Nullable
     @Override
@@ -44,40 +50,11 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View {
 
         presenter = new DevicePresenter();
         presenter.init(this);
+
+
+
         return view;
     }
-
-//    public void setUpFabMenu() {
-//        fabMenu = view.findViewById(R.id.fabMenu);
-//        Bitmap heatBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.thermometer);
-//        Bitmap networkBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.wifi);
-//        Bitmap pressureBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pressure);
-//        Bitmap batteryBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.battery);
-//
-//        FabMenuItem heatMenuItem = new FabMenuItem(getResources().getString(R.string.temprature), heatBitmap);
-//        FabMenuItem networkMenuItem = new FabMenuItem(getResources().getString(R.string.network), networkBitmap);
-//        FabMenuItem pressureMenuItem = new FabMenuItem(getResources().getString(R.string.pressure), pressureBitmap);
-//        FabMenuItem batteryMenuItem = new FabMenuItem(getResources().getString(R.string.battery_low), batteryBitmap);
-//
-//        ArrayList list = new ArrayList();
-//        fabMenu.addItem(heatMenuItem);
-//        fabMenu.addItem(pressureMenuItem);
-//        fabMenu.addItem(batteryMenuItem);
-//        fabMenu.addItem(networkMenuItem);
-//
-////        list.add(heatMenuItem);
-////        list.add(pressureMenuItem);
-////        fabMenu.setMenuList(list);
-//
-//        fabMenu.setFabItemClickListener(new FabMenu.FabItemClickListener() {
-//            @Override
-//            public void itemClicked(FabItem item) {
-//                Toast.makeText(context, "kkkkkkk" + item.getItemInfo().getTitle(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//    }
-
 
     @Override
     public void setUpRecyclerView() {
@@ -102,7 +79,14 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View {
         DeviceRecyclerAdapter adapter = new DeviceRecyclerAdapter(list, context);
         devicesView.setLayoutManager(new LinearLayoutManager(context));
         devicesView.setAdapter(adapter);
-
+        adapter.setOnDeviceInfoViewClickListener(new DeviceRecyclerAdapter.DeviceInfoViewOnClickListener() {
+            @Override
+            public void onDeviceInfoViewClick(Device device) {
+                if (device!=null){
+                    DeviceDetail.startActivityWithObject(device,context);
+                }
+            }
+        });
     }
 
     @Override
@@ -120,14 +104,7 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View {
 
     }
 
-    public void dummy() {
-//        fabMenu.setOnMenuButtonClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                presenter.toggle();
-//            }
-//        });
-    }
+
 
     public void hideRecyclerAnimation() {
         fabMenu.showMenu(true);
@@ -143,7 +120,6 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View {
         motionLayout = view.findViewById(R.id.motionLayout);
         fabMenu = view.findViewById(R.id.fabMenu);
         devicesView = view.findViewById(R.id.recyclerView);
-
-
     }
+
 }

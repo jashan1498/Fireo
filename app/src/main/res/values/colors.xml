@@ -16,5 +16,6 @@
     <color name="card_mini_bg2">#A43931</color>
     <color name="dark_red">#8E0E00</color>
     <color name="dark">#1F1C18</color>
+    <color name="gray">#B8B9BD</color>
 
 </resources>

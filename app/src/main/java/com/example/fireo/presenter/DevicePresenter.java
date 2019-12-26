@@ -12,7 +12,6 @@ public class DevicePresenter {
         fragment.init();
         fragment.setUpRecyclerView();
 //        fragment.setUpFabMenu();
-        fragment.dummy();
     }
 
     public void toggle() {

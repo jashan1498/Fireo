@@ -9,20 +9,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".QrScanActivity"></activity>
+        <activity android:name=".DeviceDetail" />
         <activity android:name=".AccountFragment" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme_ActionBar" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".SplashActivity" android:theme="@style/SplashScreenTheme">
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

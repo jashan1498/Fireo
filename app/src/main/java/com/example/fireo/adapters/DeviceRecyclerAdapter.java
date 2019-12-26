@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fireo.R;
@@ -21,12 +22,22 @@ import static com.example.fireo.Constants.DeviceFaults.TYPE_NETWORK;
 import static com.example.fireo.Constants.DeviceFaults.TYPE_PRESSURE;
 
 public class DeviceRecyclerAdapter extends RecyclerView.Adapter<DeviceRecyclerAdapter.BaseViewHolder> {
-    ArrayList<Device> list;
-    Context context;
+    private ArrayList<Device> list;
+    private Context context;
+    private DeviceInfoViewOnClickListener deviceInfoClickListener;
+
+    public interface DeviceInfoViewOnClickListener {
+        void onDeviceInfoViewClick(Device device);
+    }
 
     public DeviceRecyclerAdapter(ArrayList<Device> list, Context context) {
         this.list = list;
         this.context = context;
+    }
+
+    public void setOnDeviceInfoViewClickListener(DeviceInfoViewOnClickListener deviceInfoClickListener) {
+        this.deviceInfoClickListener = deviceInfoClickListener;
+
     }
 
     @NonNull
@@ -58,6 +69,16 @@ public class DeviceRecyclerAdapter extends RecyclerView.Adapter<DeviceRecyclerAd
         holder.deviceId.setText(list.get(position).getId());
         holder.location.setText(list.get(position).getLocation());
 
+        holder.deviceView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (deviceInfoClickListener != null) {
+                    deviceInfoClickListener.onDeviceInfoViewClick(list.get(position));
+                }
+
+            }
+        });
+
     }
 
     @Override
@@ -70,6 +91,7 @@ public class DeviceRecyclerAdapter extends RecyclerView.Adapter<DeviceRecyclerAd
         TextView timeStamp;
         TextView location;
         ImageView faultImage;
+        CardView deviceView;
 
         BaseViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +99,7 @@ public class DeviceRecyclerAdapter extends RecyclerView.Adapter<DeviceRecyclerAd
             timeStamp = itemView.findViewById(R.id.timeStamp);
             location = itemView.findViewById(R.id.location);
             faultImage = itemView.findViewById(R.id.faultImageType);
+            deviceView = itemView.findViewById(R.id.device_view);
 
         }
     }
