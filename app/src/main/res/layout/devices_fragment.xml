@@ -39,13 +39,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.978"
         app:menu_backgroundColor="#23000000"
-        fab:menu_icon="@drawable/ic_filter">
+        fab:menu_icon="@drawable/ic_filter"
+        tools:ignore="RtlSymmetry">
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_thermo"
+            android:id="@+id/remove_filter"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/clear_filter"
+            android:tag="6"
+            fab:fab_label="@string/unfilter"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_thermometer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:tag="0"
             android:src="@drawable/ic_thermometer"
             android:tint="@android:color/white"
             fab:fab_label="@string/temperature"
@@ -54,6 +65,7 @@
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_network"
             android:layout_width="wrap_content"
+            android:tag="1"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_wifi"
             fab:fab_label="@string/network"
@@ -64,6 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_battery"
+            android:tag="3"
             fab:fab_label="@string/battery_low"
             fab:fab_size="mini" />
 
@@ -72,9 +85,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_pressure"
-            android:onClick="fabItemClicked"
+            android:tag="2"
             fab:fab_label="@string/pressure"
             fab:fab_size="mini" />
+
+
 
 
     </com.github.clans.fab.FloatingActionMenu>

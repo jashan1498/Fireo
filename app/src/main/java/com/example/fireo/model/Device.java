@@ -18,7 +18,14 @@ public class Device implements Parcelable {
         }
     };
 
-    private String builingId;
+
+    // fault type
+    //     TYPE 0 = BATTERY
+    //     TYPE 1 = NETWORK
+    //     TYPE 2 = PRESSURE
+    //     TYPE 3 = TEMPERATURE
+
+    private String buildingId;
     private boolean faulty;
     private String BuildingName;
     private int faultType;
@@ -40,7 +47,7 @@ public class Device implements Parcelable {
     private float y;
 
     public Device(String buildingId, boolean faulty, int faultType, String timeStamp, String location) {
-        this.builingId = buildingId;
+        this.buildingId = buildingId;
         this.faulty = faulty;
         this.faultType = faultType;
         this.timeStamp = timeStamp;
@@ -50,7 +57,7 @@ public class Device implements Parcelable {
 
     // Parcelling part
     private Device(Parcel in) {
-        this.builingId = in.readString();
+        this.buildingId = in.readString();
         this.faulty = (Boolean) in.readValue(null);
         this.BuildingName = in.readString();
         this.faultType = in.readInt();
@@ -102,11 +109,11 @@ public class Device implements Parcelable {
     }
 
     public String getId() {
-        return builingId;
+        return buildingId;
     }
 
     public void setId(String id) {
-        this.builingId = id;
+        this.buildingId = id;
     }
 
     public boolean isFaulty() {
@@ -245,7 +252,7 @@ public class Device implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
 
-        dest.writeString(this.builingId);
+        dest.writeString(this.buildingId);
         dest.writeValue(this.faulty);
         dest.writeString(this.BuildingName);
         dest.writeInt(this.faultType);

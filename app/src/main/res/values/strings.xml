@@ -29,6 +29,11 @@
     <string name="profile_settings">Profile Settings</string>
     <string name="authorised_buildings_list">Authorised Buildings List</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="unfilter">Remove Filter</string>
+    <string name="email_id">Email ID</string>
+    <string name="user_id">User ID</string>
+    <string name="authority">Authority</string>
+    <string name="save">Save</string>
 
 
 </resources>

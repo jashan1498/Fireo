@@ -1,27 +1,45 @@
 package com.example.fireo.presenter;
 
 import com.example.fireo.DevicesFragment;
+import com.example.fireo.model.Device;
+
+import java.util.ArrayList;
+
+import static com.example.fireo.Constants.REMOVE_FILTER;
 
 public class DevicePresenter {
 
-    DevicesFragment fragment;
-    boolean animationActive = false;
+
+    private DevicesFragment fragment;
+    private ArrayList<Device> list;
+    public DevicePresenter() {
+        list = new ArrayList<>();
+
+    }
 
     public void init(DevicesFragment fragment) {
         this.fragment = fragment;
         fragment.init();
         fragment.setUpRecyclerView();
-//        fragment.setUpFabMenu();
     }
 
-    public void toggle() {
-        if (animationActive)
-            fragment.hideRecyclerAnimation();
-        else
-            fragment.showRecyclerAnimation();
 
-        animationActive = !animationActive;
+    public void setRecyclerList(ArrayList<Device> list) {
+        this.list = list;
+    }
 
+    public void filterList(int type) {
+        ArrayList<Device> newList = new ArrayList<>();
+        if (type != REMOVE_FILTER) {
+            for (Device device : list) {
+                if (device.getFaultType() == type) {
+                    newList.add(device);
+                }
+            }
+            fragment.updateRecyclerView(newList);
+        } else {
+            fragment.updateRecyclerView(list);
+        }
     }
 
 
@@ -33,5 +51,7 @@ public class DevicePresenter {
         void filterList(int type);
 
         void SearchDevice(String id);
+
+        void updateRecyclerView(ArrayList<Device> devices);
     }
 }

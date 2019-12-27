@@ -41,7 +41,6 @@ public class FabMenu extends FrameLayout {
     private boolean isAnimating = false;
     private Context context;
 
-
     public FabMenu(Context context) {
         super(context);
         init(context);
@@ -55,6 +54,10 @@ public class FabMenu extends FrameLayout {
     public FabMenu(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
+    }
+
+    public ImageView getBlurryView() {
+        return blurryView;
     }
 
     public void setVariableScale(boolean isVariableScale) {
@@ -287,17 +290,17 @@ public class FabMenu extends FrameLayout {
             currentItem.setVisibility(VISIBLE);
             currentItem.setY(getItemY(s));
 
-            Log.d("calculations",""+ currentItem.getY());
+            Log.d("calculations", "" + currentItem.getY());
         }
 
     }
 
     private float getItemY(int s) {
         if (s == 0) {
-            return -(actionButton.getBottom()+actionButton.getHeight());
+            return -(actionButton.getBottom() + actionButton.getHeight());
         } else {
-            Log.d("calculations",""+ (-itemList.get(s-1).getY()));
-            return (-itemList.get(s-1).getBottom() - itemList.get(s-1).getTop()-100);
+            Log.d("calculations", "" + (-itemList.get(s - 1).getY()));
+            return (-itemList.get(s - 1).getBottom() - itemList.get(s - 1).getTop() - 100);
         }
     }
 

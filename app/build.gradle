@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -25,8 +26,8 @@ android {
         }
     }
     compileOptions {
-        targetCompatibility = "8"
-        sourceCompatibility = "8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -44,9 +45,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
-    // butter knife
-    implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 
     // firebase
     apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
@@ -68,9 +66,5 @@ dependencies {
     implementation 'com.github.clans:fab:1.6.4'
     implementation 'com.mikhaellopez:circularimageview:4.1.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
-
-
-
-
 
 }

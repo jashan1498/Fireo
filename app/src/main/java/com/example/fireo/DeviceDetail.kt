@@ -28,7 +28,6 @@ class DeviceDetail : AppCompatActivity() {
 
 
     companion object {
-
         @JvmStatic
         fun startActivityWithObject(device: Device, context: Context) {
             val activityIntent = Intent(context, DeviceDetail::class.java)

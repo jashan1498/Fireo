@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,10 +22,11 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.util.Objects;
 
+
 public class MainActivity extends BaseApplication {
 
     public static int QR_SCAN_REQUEST_CODE = 129234;
-    BottomNavigationView bottomNavigationView;
+    public BottomNavigationView bottomNavigationView;
     FragmentTransaction transaction;
     FragmentManager manager;
     Fragment active;
@@ -146,6 +146,5 @@ public class MainActivity extends BaseApplication {
         }
     }
 
-    public void fabItemClicked(View view) {
-    }
+
 }

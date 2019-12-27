@@ -3,8 +3,6 @@ package com.example.fireo.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.util.Locale;
-
 import static android.content.Context.MODE_PRIVATE;
 
 public class LoginUtils {
@@ -12,7 +10,7 @@ public class LoginUtils {
     private static final String CURRENT_USER_NAME = "LoginUsername";
     private Context context;
     private LoginListener loginListener;
-    String user;
+    private String user;
 
     public LoginUtils(Context context) {
         this.context = context;
@@ -28,18 +26,17 @@ public class LoginUtils {
     }
 
 
-    public boolean setLoginState(String user, boolean isLoggedIn) {
+    public void setLoginState(String user, boolean isLoggedIn) {
         try {
             this.user = user;
             saveState();
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return;
         }
         if (loginListener != null) {
             loginListener.onLoginChanged(user,isLoggedIn);
         }
-        return true;
     }
 
     private void saveState() {
