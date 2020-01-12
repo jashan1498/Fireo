@@ -11,10 +11,12 @@ import static android.content.Context.MODE_PRIVATE;
 public class SharedPrefUtils {
 
     private static final String APP_LOCALE_FILE_NAME = "APP_LOCALE";
-    public static Locale locale;
+    private static final String APP_THEME = "APP_THEME";
+    private static Locale locale;
     private Context context;
     private LoginListener loginListener;
     private LanguageListener languageListener;
+    private boolean isNightMode = false;
 
 
     public SharedPrefUtils(Context context) {
@@ -33,6 +35,7 @@ public class SharedPrefUtils {
     public void setLoginListener(LoginListener loginListener) {
         this.loginListener = loginListener;
     }
+
 
     public String getLanguage() {
         return locale.getLanguage();
@@ -69,7 +72,7 @@ public class SharedPrefUtils {
             return false;
         }
         if (loginListener != null) {
-            loginListener.onLoginChanged("",true);
+            loginListener.onLoginChanged("", true);
         }
         return true;
     }
@@ -92,5 +95,28 @@ public class SharedPrefUtils {
         this.context = context;
         locale = getLocaleFromCache();
         setLocale();
+    }
+
+    public boolean getDayNightMode() {
+        return getThemeFromCache();
+    }
+
+    public boolean setDayNightMode(boolean isNightMode) {
+        this.isNightMode = isNightMode;
+        saveTheme();
+        return isNightMode;
+    }
+
+    private boolean getThemeFromCache() {
+        SharedPreferences preferences = context.getSharedPreferences(APP_THEME,
+                MODE_PRIVATE);
+        return preferences.getBoolean(APP_THEME, false);
+    }
+
+    private void saveTheme() {
+        SharedPreferences.Editor editor = context.getSharedPreferences(APP_THEME,
+                MODE_PRIVATE).edit();
+        editor.putBoolean(APP_THEME, isNightMode);
+        editor.apply();
     }
 }

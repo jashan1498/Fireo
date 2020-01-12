@@ -1,10 +1,8 @@
 package com.example.fireo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class ProfileSettingsActivity extends AppCompatActivity {
+public class ProfileSettingsActivity extends BaseApplication {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/include"
@@ -18,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
@@ -38,9 +38,9 @@
         <include
             layout="@layout/battery_card"
             android:layout_width="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="end" />
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp" />
 
         <include
             layout="@layout/pressure_card"
@@ -52,8 +52,8 @@
             layout="@layout/wifi_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="end" />
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp" />
 
 
     </GridLayout>
@@ -62,8 +62,11 @@
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="731dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="10dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_begin="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/guideline2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -71,6 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintGuide_end="10dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

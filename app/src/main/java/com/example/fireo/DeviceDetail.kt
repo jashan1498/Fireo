@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.GridLayout
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.fireo.model.Device
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
@@ -16,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_device_detail.*
 import kotlinx.android.synthetic.main.info_card.view.*
 import org.json.JSONObject
 
-class DeviceDetail : AppCompatActivity() {
+class DeviceDetail : BaseApplication() {
 
     private lateinit var device: Device
     private var firebaseDatabase: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -53,17 +52,18 @@ class DeviceDetail : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_device_detail)
         gridLayout = device_info_view
 
-        isStarttedWithObject = intent.getBooleanExtra(IS_STARTED_WITH_OBJECT,false)
+        isStarttedWithObject = intent.getBooleanExtra(IS_STARTED_WITH_OBJECT, false)
 
         if (isStarttedWithObject) {
             device = intent.getParcelableExtra(DEVICE_DETAIL_DATA)
             inflateViewWithObject(device)
         } else {
             intent.getStringExtra(DEVICE_ID_EXTRA)?.let {
-                inflateViewWithId(deviceId =  intent.getStringExtra(DEVICE_ID_EXTRA))
+                inflateViewWithId(deviceId = intent.getStringExtra(DEVICE_ID_EXTRA))
             }
         }
     }

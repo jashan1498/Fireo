@@ -1,7 +1,6 @@
 package com.example.fireo;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,17 +9,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.fireo.Utils.SharedPrefUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
-import java.util.Objects;
 
 
 public class MainActivity extends BaseApplication {
@@ -35,18 +34,26 @@ public class MainActivity extends BaseApplication {
     MapFragment mapFragment;
     LocationFragment locationFragment;
     AccountFragment accountFragment;
+    Toolbar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPrefUtils utils = new SharedPrefUtils(this);
+        applyTheme(utils.getDayNightMode());
+
         setContentView(R.layout.activity_main);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.white)));
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
+        actionBar = findViewById(R.id.toolbar);
         manager = getSupportFragmentManager();
+        setSupportActionBar(actionBar);
         setBottomMenuClickListener();
         initFragments();
-
+        Toast.makeText(this, "Welcome "+firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
     }
+
+
 
 
     private void initFragments() {
@@ -67,14 +74,10 @@ public class MainActivity extends BaseApplication {
     }
 
     private void setBottomMenuClickListener() {
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                changeFragment(menuItem.getItemId());
-                return true;
-            }
+        bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
+            changeFragment(menuItem.getItemId());
+            return true;
         });
-
     }
 
     private void changeFragment(int itemId) {

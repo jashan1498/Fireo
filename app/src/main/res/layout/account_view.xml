@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F1F5"
+    android:background="?attr/activity_background"
     tools:context=".AccountFragment">
 
 
@@ -25,23 +25,23 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Jashan Deep"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/circularImageView"
         app:layout_constraintStart_toStartOf="@+id/circularImageView"
-        app:layout_constraintTop_toBottomOf="@+id/circularImageView"
-        android:text="Jashan Deep" />
+        app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
+        android:text="Authority"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/circularImageView"
-        android:text="Authority" />
+        app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -216,13 +216,12 @@
                     android:textColor="@android:color/background_dark" />
 
                 <Switch
-                    android:id="@+id/switch1"
+                    android:id="@+id/themeSwitch"
                     android:layout_width="45dp"
                     android:layout_height="22dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="20dp"
                     android:background="@drawable/track_style"
-                    android:checked="true"
                     android:thumb="@android:color/black" />
 
             </LinearLayout>
@@ -230,6 +229,59 @@
 
         </LinearLayout>
 
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="50dp"
+        android:elevation="0dp"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:background="@drawable/user_black_white"
+                android:backgroundTint="@color/light_gray"
+                android:contentDescription="@string/todo" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:text="@string/logout"
+                android:textColor="@color/light_gray" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:background="@drawable/next"
+                android:backgroundTint="@color/light_gray"
+                android:contentDescription="@string/todo"
+                android:scaleX="0.7"
+                android:scaleY="0.7" />
+
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 

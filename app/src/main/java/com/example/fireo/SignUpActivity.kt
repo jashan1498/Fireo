@@ -4,48 +4,42 @@ import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.back_btn
-import kotlinx.android.synthetic.main.activity_login.pass_edit_text
-import kotlinx.android.synthetic.main.activity_login.username_edit_text
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.regex.Pattern
 
-class LoginActivity : BaseApplication(), View.OnClickListener {
+class SignUpActivity : BaseApplication(), View.OnClickListener {
 
     private lateinit var signInButton: TextView
     private lateinit var backButton: ImageView
-    private lateinit var loginButton: Button
+    private lateinit var loginButton: TextView
     private lateinit var lottieAnim: LottieAnimationView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_sign_up)
 
-        signInButton = sign_up_btn
+        signInButton = sign_up_button
         backButton = back_btn
-        loginButton = login_button
+        loginButton = login_btn
         lottieAnim = lottie_anim
 
         signInButton.setOnClickListener(this)
         backButton.setOnClickListener(this)
         loginButton.setOnClickListener(this)
-
     }
 
     override fun onClick(v: View?) {
         when (v) {
-            sign_up_btn -> {
+            signInButton -> validateEditTexts()
+            loginButton -> {
                 intent = Intent(this, SignUpActivity::class.java)
                 startActivity(intent)
             }
-            loginButton -> validateEditTexts()
             backButton -> finish()
         }
     }
@@ -60,7 +54,7 @@ class LoginActivity : BaseApplication(), View.OnClickListener {
 
         if (emailValidation && passwordValidation) {
             lottieAnim.visibility = View.VISIBLE
-            firebaseAuth.signInWithEmailAndPassword(userEmail, password)
+            firebaseAuth.createUserWithEmailAndPassword(userEmail, password)
                 .addOnSuccessListener {
                     val user: FirebaseUser? = it.user
 
@@ -75,7 +69,6 @@ class LoginActivity : BaseApplication(), View.OnClickListener {
                                 override fun onAnimationEnd(animation: Animator?) {
                                     startActivity(redirectToMain)
                                 }
-
                                 override fun onAnimationRepeat(animation: Animator?) {}
                                 override fun onAnimationCancel(animation: Animator?) {}
                                 override fun onAnimationStart(animation: Animator?) {}

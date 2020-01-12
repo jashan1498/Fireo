@@ -25,7 +25,6 @@ public class LoginUtils {
         this.loginListener = loginListener;
     }
 
-
     public void setLoginState(String user, boolean isLoggedIn) {
         try {
             this.user = user;
@@ -35,7 +34,7 @@ public class LoginUtils {
             return;
         }
         if (loginListener != null) {
-            loginListener.onLoginChanged(user,isLoggedIn);
+            loginListener.onLoginChanged(user, isLoggedIn);
         }
     }
 
