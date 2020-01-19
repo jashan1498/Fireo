@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.example.fireo.Utils.DialogHelper;
 import com.example.fireo.Utils.SharedPrefUtils;
 import com.example.fireo.presenter.AccountPresenter;
 
@@ -24,13 +25,13 @@ public class AccountFragment extends Fragment implements AccountPresenter.Accoun
     private View view;
     private AccountPresenter presenter;
     private Context context;
-    private CardView logoutButton;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.account_view, container, false);
+
         themeSwitch = view.findViewById(R.id.themeSwitch);
         presenter = new AccountPresenter(this);
         if (view != null) {
@@ -43,15 +44,26 @@ public class AccountFragment extends Fragment implements AccountPresenter.Accoun
     public void init() {
         SharedPrefUtils utils = new SharedPrefUtils(getActivity());
         LinearLayout profileSettingsButton = view.findViewById(R.id.profile_settings);
-        logoutButton = view.findViewById(R.id.logout);
+        CardView logoutButton = view.findViewById(R.id.logout);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BaseApplication application = (BaseApplication) getActivity();
-                if (application != null) {
-                    application.Logout();
-                }
+                DialogHelper dialogHelper = new DialogHelper(getActivity());
+                dialogHelper.create(true, getActivity().getString(R.string.logout_content), getActivity().getString(R.string.logout));
+                dialogHelper.setDialogListener(new DialogHelper.DialogListener() {
+                    @Override
+                    public void onClick(boolean accepted) {
+                        if (accepted) {
+                            BaseApplication application = (BaseApplication) getActivity();
+                            if (application != null) {
+                                application.logout();
+                            }
+                        } else {
+                            dialogHelper.dismissDialog();
+                        }
+                    }
+                });
             }
         });
 
@@ -80,8 +92,6 @@ public class AccountFragment extends Fragment implements AccountPresenter.Accoun
     }
 
     private void applyTheme() {
-        // show dialog
-
         // finish() and start app again
         getActivity().finish();
         Intent intent = new Intent(getActivity(), MainActivity.class);

@@ -8,6 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
+import com.example.fireo.Constants.Constants
+import com.example.fireo.Constants.Constants.DEFAULT_USER_TYPE
+import com.example.fireo.model.User
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.regex.Pattern
@@ -37,7 +40,7 @@ class SignUpActivity : BaseApplication(), View.OnClickListener {
         when (v) {
             signInButton -> validateEditTexts()
             loginButton -> {
-                intent = Intent(this, SignUpActivity::class.java)
+                intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
             backButton -> finish()
@@ -48,11 +51,13 @@ class SignUpActivity : BaseApplication(), View.OnClickListener {
         lottieAnim.playAnimation()
         val userEmail = username_edit_text.text.toString()
         val password = pass_edit_text.text.toString()
+        val phone = phone_number.text.toString()
 
         val emailValidation = userEmail.length > 6 && validateEmail(userEmail)
         val passwordValidation = password.length > 7
+        val phoneValidation = phone.length > 8
 
-        if (emailValidation && passwordValidation) {
+        if (emailValidation && passwordValidation && phoneValidation) {
             lottieAnim.visibility = View.VISIBLE
             firebaseAuth.createUserWithEmailAndPassword(userEmail, password)
                 .addOnSuccessListener {
@@ -61,31 +66,59 @@ class SignUpActivity : BaseApplication(), View.OnClickListener {
                     if (user != null) {
                         if (user.email!!.isNotEmpty()) {
                             firebaseUser = user
-                            val redirectToMain = Intent(this, MainActivity::class.java)
-                            lottieAnim.setAnimation(R.raw.animation_done)
-                            lottieAnim.pauseAnimation()
-                            lottieAnim.loop(false)
-                            lottieAnim.addAnimatorListener(object : Animator.AnimatorListener {
-                                override fun onAnimationEnd(animation: Animator?) {
-                                    startActivity(redirectToMain)
-                                }
-                                override fun onAnimationRepeat(animation: Animator?) {}
-                                override fun onAnimationCancel(animation: Animator?) {}
-                                override fun onAnimationStart(animation: Animator?) {}
-                            })
-                            lottieAnim.playAnimation()
+                            syncUserWithFirebase()
                         }
                     }
                 }.addOnFailureListener {
                     Toast.makeText(
                         applicationContext,
-                        "An Error Occurred! Please Try Again Later",
+                        resources.getString(R.string.error_string),
                         Toast.LENGTH_LONG
                     ).show()
                     lottieAnim.visibility = View.INVISIBLE
                     lottieAnim.pauseAnimation()
                 }
         }
+    }
+
+    private fun redirectToMain() {
+        val redirectToMain = Intent(this, MainActivity::class.java)
+        lottieAnim.setAnimation(R.raw.animation_done)
+        lottieAnim.pauseAnimation()
+        lottieAnim.loop(false)
+        lottieAnim.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationEnd(animation: Animator?) {
+                startActivity(redirectToMain)
+            }
+
+            override fun onAnimationRepeat(animation: Animator?) {}
+            override fun onAnimationCancel(animation: Animator?) {}
+            override fun onAnimationStart(animation: Animator?) {}
+        })
+        lottieAnim.playAnimation()
+    }
+
+    private fun syncUserWithFirebase() {
+        val fireStore = fireStore
+        val user = User(
+            firebaseUser.email,
+            firebaseUser.uid,
+            DEFAULT_USER_TYPE,
+            full_name.text.toString(),
+            phone_number.text.toString()
+        )
+        fireStore.collection(Constants.Collections.User).document(firebaseUser.uid).set(user)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    redirectToMain()
+                } else {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.data_not_synced),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
     }
 
     private fun validateEmail(userEmail: String): Boolean {

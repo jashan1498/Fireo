@@ -50,11 +50,8 @@ public class MainActivity extends BaseApplication {
         setSupportActionBar(actionBar);
         setBottomMenuClickListener();
         initFragments();
-        Toast.makeText(this, "Welcome "+firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Welcome " + firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
     }
-
-
-
 
     private void initFragments() {
         manager = getSupportFragmentManager();

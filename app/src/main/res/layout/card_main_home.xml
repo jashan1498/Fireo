@@ -1,129 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="200dp">
+    <data>
+        <variable
+            name="dashboard"
+            type="com.example.fireo.model.Dashboard" />
 
-    <androidx.cardview.widget.CardView
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/card_bg"
-        android:elevation="10dp"
-        app:cardCornerRadius="5dp">
+        android:layout_height="200dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/card_gradient_main"
-            android:orientation="vertical">
+            android:layout_height="200dp"
+            android:background="@color/card_bg"
+            android:elevation="10dp"
+            app:cardCornerRadius="5dp">
 
-            <TextView
-                android:id="@+id/heading_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:text="@string/devices_status"
-                android:textColor="@android:color/white"
-                android:textSize="21sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.21" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/card_gradient_main"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="64dp"
-                android:layout_marginEnd="35dp"
-                android:text="@string/total_devices"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.007" />
+                <TextView
+                    android:id="@+id/heading_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="@string/devices_status"
+                    android:textColor="@android:color/white"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.21" />
 
-            <TextView
-                android:id="@+id/device_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="12dp"
-                android:text="1167"
-                android:textColor="@android:color/white"
-                android:textSize="19sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="0.488"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                <TextView
+                    android:id="@+id/fullName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="35dp"
+                    android:text="@string/total_devices"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.007" />
 
-            <TextView
-                android:id="@+id/working_devices"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="10dp"
-                android:text="@string/working_devices"
-                android:textColor="@android:color/white"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.71"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/faulty_devices" />
+                <TextView
+                    android:id="@+id/device_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="12dp"
+                    android:text="@{dashboard.totalDevicesCount}"
+                    android:textColor="@android:color/white"
+                    android:textSize="19sp"
+                    app:layout_constraintEnd_toEndOf="@+id/fullName"
+                    app:layout_constraintHorizontal_bias="0.488"
+                    app:layout_constraintStart_toStartOf="@+id/fullName"
+                    app:layout_constraintTop_toBottomOf="@+id/fullName" />
 
-            <TextView
-                android:id="@+id/working_devices_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="8dp"
-                android:text="320"
-                android:textColor="@android:color/white"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/faulty_devices_count"
-                app:layout_constraintLeft_toRightOf="@id/working_devices"
-                app:layout_constraintTop_toBottomOf="@+id/faulty_devices_count" />
+                <TextView
+                    android:id="@+id/working_devices"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/working_devices"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.71"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/faulty_devices" />
 
-            <TextView
-                android:id="@+id/faulty_devices"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="11dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/faulty_devices"
-                android:textColor="@color/card_bg"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toTopOf="@+id/working_devices"
-                app:layout_constraintEnd_toEndOf="@+id/working_devices"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/working_devices"
-                app:layout_constraintTop_toBottomOf="@+id/device_count" />
+                <TextView
+                    android:id="@+id/working_devices_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:text="@{dashboard.workingDevicesCount}"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@+id/faulty_devices_count"
+                    app:layout_constraintLeft_toRightOf="@id/working_devices"
+                    app:layout_constraintTop_toBottomOf="@+id/faulty_devices_count" />
 
-            <TextView
-                android:id="@+id/faulty_devices_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginBottom="10dp"
-                android:text="739"
-                android:textColor="@color/card_bg"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toTopOf="@id/working_devices_count"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/faulty_devices"
-                app:layout_constraintTop_toTopOf="@+id/faulty_devices" />
+                <TextView
+                    android:id="@+id/faulty_devices"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/faulty_devices"
+                    android:textColor="@color/card_bg"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toTopOf="@+id/working_devices"
+                    app:layout_constraintEnd_toEndOf="@+id/working_devices"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/working_devices"
+                    app:layout_constraintTop_toBottomOf="@+id/device_count" />
+
+                <TextView
+                    android:id="@+id/faulty_devices_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="10dp"
+                    android:text="@{dashboard.faultyDevicesCount}"
+                    android:textColor="@color/card_bg"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toTopOf="@id/working_devices_count"
+                    app:layout_constraintEnd_toEndOf="@+id/fullName"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/faulty_devices"
+                    app:layout_constraintTop_toTopOf="@+id/faulty_devices" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

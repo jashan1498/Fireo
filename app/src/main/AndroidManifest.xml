@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/LightAppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".GetMoreInfomationActivity"></activity>
+        <activity android:name=".SignUpActivity" />
         <activity
             android:name=".ProfileSettingsActivity"
             android:screenOrientation="portrait"

@@ -5,7 +5,7 @@ import com.example.fireo.model.Device;
 
 import java.util.ArrayList;
 
-import static com.example.fireo.Constants.REMOVE_FILTER;
+import static com.example.fireo.Constants.Constants.REMOVE_FILTER;
 
 public class DevicePresenter {
 

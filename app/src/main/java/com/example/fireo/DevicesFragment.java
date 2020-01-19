@@ -20,10 +20,10 @@ import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 
-import static com.example.fireo.Constants.DeviceFaults.TYPE_BATTERY;
-import static com.example.fireo.Constants.DeviceFaults.TYPE_NETWORK;
-import static com.example.fireo.Constants.DeviceFaults.TYPE_PRESSURE;
-import static com.example.fireo.Constants.DeviceFaults.TYPE_TEMPERATURE;
+import static com.example.fireo.Constants.Constants.DeviceFaults.TYPE_BATTERY;
+import static com.example.fireo.Constants.Constants.DeviceFaults.TYPE_NETWORK;
+import static com.example.fireo.Constants.Constants.DeviceFaults.TYPE_PRESSURE;
+import static com.example.fireo.Constants.Constants.DeviceFaults.TYPE_TEMPERATURE;
 
 
 public class DevicesFragment extends Fragment implements DevicePresenter.View, View.OnClickListener {

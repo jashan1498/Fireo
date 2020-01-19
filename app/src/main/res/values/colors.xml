@@ -19,5 +19,6 @@
     <color name="black">#ff000000</color>
     <color name="gray">#B8B9BD</color>
     <color name="light_gray">#f5f5f5</color>
+    <color name="creamish_white">#FFF9FE</color>
 
 </resources>

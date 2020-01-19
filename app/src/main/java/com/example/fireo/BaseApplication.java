@@ -7,12 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fireo.Utils.SharedPrefUtils;
+import com.example.fireo.model.User;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
-import com.google.firebase.firestore.auth.User;
 
 public class BaseApplication extends AppCompatActivity {
     public static User user;
@@ -25,8 +25,22 @@ public class BaseApplication extends AppCompatActivity {
     BaseApplication() {
         setFirebaseSettings();
         initFirebase();
+    }
 
+    public static FirebaseUser getFirebaseUser() {
+        return firebaseUser;
+    }
 
+    public static FirebaseAuth getFirebaseAuth() {
+        return firebaseAuth;
+    }
+
+    public static FirebaseApp getFirebaseApp() {
+        return firebaseApp;
+    }
+
+    public FirebaseFirestore getFireStore() {
+        return fireStore;
     }
 
     private void initFirebase() {
@@ -35,6 +49,7 @@ public class BaseApplication extends AppCompatActivity {
 
         if (firebaseAuth.getCurrentUser() != null) {
             firebaseUser = firebaseAuth.getCurrentUser();
+
         }
     }
 
@@ -61,13 +76,13 @@ public class BaseApplication extends AppCompatActivity {
         }
     }
 
-    public void Logout(){
+    public void logout() {
         FirebaseAuth.getInstance().signOut();
         firebaseUser = null;
         this.finishAffinity();
-        Intent redirectToBase = new Intent(this,SplashActivity.class);
+        Intent redirectToBase = new Intent(this, SplashActivity.class);
         startActivity(redirectToBase);
-
     }
+
 
 }

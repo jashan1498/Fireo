@@ -96,7 +96,7 @@ public class FabItem extends ConstraintLayout {
         setLayoutParams(params);
         setVisibility(VISIBLE);
         imageView = view.findViewById(R.id.imageView);
-        textView = view.findViewById(R.id.textView);
+        textView = view.findViewById(R.id.fullName);
         setText();
         setIcon();
         setIconClickListener();
