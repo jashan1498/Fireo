@@ -33,7 +33,6 @@ class DeviceDetail : BaseApplication() {
             activityIntent.putExtra(DEVICE_DETAIL_DATA, device)
             activityIntent.putExtra(IS_STARTED_WITH_OBJECT, true)
             context.startActivity(activityIntent)
-
         }
 
         @JvmStatic

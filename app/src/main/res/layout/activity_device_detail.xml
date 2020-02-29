@@ -113,9 +113,9 @@
             android:columnCount="2"
             android:clickable="true"
             android:paddingStart="4dp"
+            android:paddingBottom="50dp"
+            android:clipToPadding="false"
             android:paddingEnd="4dp">
-
-
         </GridLayout>
 
 

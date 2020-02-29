@@ -25,6 +25,7 @@ public class AccountFragment extends Fragment implements AccountPresenter.Accoun
     private View view;
     private AccountPresenter presenter;
     private Context context;
+    LinearLayout authorisedBuildings;
 
 
     @Nullable
@@ -33,6 +34,7 @@ public class AccountFragment extends Fragment implements AccountPresenter.Accoun
         view = inflater.inflate(R.layout.account_view, container, false);
 
         themeSwitch = view.findViewById(R.id.themeSwitch);
+        authorisedBuildings = view.findViewById(R.id.authorised_buildings);
         presenter = new AccountPresenter(this);
         if (view != null) {
             context = view.getContext();
@@ -45,6 +47,13 @@ public class AccountFragment extends Fragment implements AccountPresenter.Accoun
         SharedPrefUtils utils = new SharedPrefUtils(getActivity());
         LinearLayout profileSettingsButton = view.findViewById(R.id.profile_settings);
         CardView logoutButton = view.findViewById(R.id.logout);
+
+        authorisedBuildings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AuthorisedBuildingsActivity.redirect(context);
+            }
+        });
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override

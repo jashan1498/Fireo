@@ -12,8 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/LightAppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".GetMoreInfomationActivity"></activity>
-        <activity android:name=".SignUpActivity" />
+
+        <activity
+            android:name=".AuthorisedBuildingsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".DummyDataAdd"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".SignUpActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProfileSettingsActivity"
             android:screenOrientation="portrait"
@@ -29,7 +39,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />

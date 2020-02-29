@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/motionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layoutDescription="@xml/device_fragment_anim"
-    tools:showPaths="true"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -18,10 +16,80 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        android:clipToPadding="false"
+        android:paddingTop="50dp"
+        android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/device_view" />
+
+    <LinearLayout
+        android:id="@+id/search_view_parent"
+        android:layout_width="0dp"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            app:searchIcon="@drawable/ic_search" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/building_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="17dp"
+            android:layout_weight="1"
+            android:gravity="start|center_vertical"
+            android:textColor="@color/creamish_white"
+            android:textSize="19sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/floor"
+            android:textColor="@color/creamish_white"
+            android:textSize="19sp" />
+
+        <Spinner
+            android:id="@+id/floor_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/creamish_white"
+            android:foregroundTint="@color/creamish_white" />
+
+        <ImageView
+            android:id="@+id/search_view_toggle"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:tint="@color/creamish_white"
+            android:src="@drawable/ic_search" />
+    </LinearLayout>
+
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/fabMenu"
@@ -55,8 +123,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:tag="0"
             android:src="@drawable/ic_thermometer"
+            android:tag="0"
             android:tint="@android:color/white"
             fab:fab_label="@string/temperature"
             fab:fab_size="mini" />
@@ -64,9 +132,9 @@
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_network"
             android:layout_width="wrap_content"
-            android:tag="1"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_wifi"
+            android:tag="1"
             fab:fab_label="@string/network"
             fab:fab_size="mini" />
 
@@ -89,8 +157,6 @@
             fab:fab_size="mini" />
 
 
-
-
     </com.github.clans.fab.FloatingActionMenu>
 
-</androidx.constraintlayout.motion.widget.MotionLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

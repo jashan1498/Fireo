@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/device_view"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:elevation="10dp"
+    app:cardBackgroundColor="@color/creamish_white"
+    app:cardCornerRadius="10dp">
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:progressTint="@color/colorPrimary"
+        android:layout_gravity="center_vertical" />
+</LinearLayout>

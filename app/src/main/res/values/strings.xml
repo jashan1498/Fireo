@@ -15,7 +15,7 @@
     <string name="devices_status">Devices Status</string>
     <string name="working_devices">Working Devices</string>
     <string name="faulty_devices">Faulty Devices</string>
-    <string name="temperature">Temperature</string>
+    <string name="temperature">Heat</string>
     <string name="battery_low">Battery Low</string>
     <string name="network">Network</string>
     <string name="pressure">Pressure</string>
@@ -41,6 +41,7 @@
     <string name="yes">YES</string>
     <string name="no">NO</string>
     <string name="logout_content">Are you sure you want to logout ?</string>
+    <string name="floor">Floor</string>
 
 
 </resources>

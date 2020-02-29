@@ -51,6 +51,13 @@ public class MainActivity extends BaseApplication {
         setBottomMenuClickListener();
         initFragments();
         Toast.makeText(this, "Welcome " + firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.exit(0);
     }
 
     private void initFragments() {

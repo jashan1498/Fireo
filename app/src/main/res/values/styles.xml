@@ -43,5 +43,15 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="expandedToolbarLayoutTitleColor" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/creamish_white</item>
+    </style>
+
+    <style name="collapsedToolbarLayoutTitleColor" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/creamish_white</item>
+    </style>
+
 
 </resources>

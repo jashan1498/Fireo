@@ -26,7 +26,7 @@ public class HomePresenter {
         BaseApplication application = (BaseApplication) fragment.getActivity();
         if (application != null) {
             FirebaseUser user = BaseApplication.getFirebaseUser();
-            application.getFireStore().collection(Constants.Collections.Dashboard).document(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            application.getFireStore().collection(Constants.Collections.DASHBOARD).document(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {

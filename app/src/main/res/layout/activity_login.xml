@@ -70,6 +70,8 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="20dp"
                 android:maxLines="1"
+                android:lines="1"
+                android:singleLine="true"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/gradient_color1"
                 android:drawableTint="@color/gradient_color1"

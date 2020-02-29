@@ -9,6 +9,7 @@ public class User {
     private ArrayList<String> buildingList;
     private String fullName;
     private String phoneNumber;
+    private ArrayList<String> simpleBuildingName;
 
     public User(String email, String userId, String type, String fullName, String phoneNumber) {
         this.email = email;
@@ -67,6 +68,14 @@ public class User {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public ArrayList<String> getSimpleBuildingName() {
+        return simpleBuildingName;
+    }
+
+    public void setSimpleBuildingName(ArrayList<String> simpleBuildingName) {
+        this.simpleBuildingName = simpleBuildingName;
     }
 
     public String getType() {

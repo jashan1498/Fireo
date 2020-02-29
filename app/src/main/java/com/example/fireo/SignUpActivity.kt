@@ -42,6 +42,7 @@ class SignUpActivity : BaseApplication(), View.OnClickListener {
             loginButton -> {
                 intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                this.finish()
             }
             backButton -> finish()
         }
@@ -107,7 +108,7 @@ class SignUpActivity : BaseApplication(), View.OnClickListener {
             full_name.text.toString(),
             phone_number.text.toString()
         )
-        fireStore.collection(Constants.Collections.User).document(firebaseUser.uid).set(user)
+        fireStore.collection(Constants.Collections.USER).document(firebaseUser.uid).set(user)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     redirectToMain()

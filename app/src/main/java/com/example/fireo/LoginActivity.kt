@@ -44,6 +44,7 @@ class LoginActivity : BaseApplication(), View.OnClickListener {
             sign_up_btn -> {
                 intent = Intent(this, SignUpActivity::class.java)
                 startActivity(intent)
+                this.finish()
             }
             loginButton -> validateEditTexts()
             backButton -> finish()

@@ -1,9 +1,11 @@
 package com.example.fireo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeFragment extends Fragment implements HomePresenter.HomeView {
     static final String TAG = "HOME_FRAGMENT";
-    View view;
+    private LinearLayout tempCard;
     private HomePresenter homePresenter;
     private HomeViewBindingImpl binding;
 
@@ -26,6 +28,8 @@ public class HomeFragment extends Fragment implements HomePresenter.HomeView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.home_view, container, false);
+        tempCard = binding.getRoot().findViewById(R.id.temp_card);
+
         homePresenter = new HomePresenter(this);
         homePresenter.fetchData();
         return binding.getRoot();
@@ -38,12 +42,20 @@ public class HomeFragment extends Fragment implements HomePresenter.HomeView {
             FirebaseFirestore firestore = ((BaseApplication) getActivity()).getFireStore();
 
             String uid = firebaseUser.getUid();
+            tempCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), DummyDataAdd.class);
+                    startActivity(intent);
+                }
+            });
 
 
         }
 
     }
 
+    @Override
     public void setData(Dashboard dashboard) {
         binding.setDashboard(dashboard);
     }

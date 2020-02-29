@@ -12,6 +12,8 @@ public class SharedPrefUtils {
 
     private static final String APP_LOCALE_FILE_NAME = "APP_LOCALE";
     private static final String APP_THEME = "APP_THEME";
+    private static final String APP_DATA = "APP_THEME";
+    public static final String CURRENT_BUILDING = "CURRENT_BUILDING";
     private static Locale locale;
     private Context context;
     private LoginListener loginListener;
@@ -118,5 +120,17 @@ public class SharedPrefUtils {
                 MODE_PRIVATE).edit();
         editor.putBoolean(APP_THEME, isNightMode);
         editor.apply();
+    }
+
+    public void save(String tag, String value) {
+        SharedPreferences.Editor preferences = context.getSharedPreferences(APP_DATA, MODE_PRIVATE).edit();
+        preferences.putString(tag, value);
+        preferences.apply();
+    }
+
+    public String retrieve(String tag) {
+        SharedPreferences preferences = context.getSharedPreferences(APP_DATA,
+                MODE_PRIVATE);
+        return preferences.getString(tag, null);
     }
 }
