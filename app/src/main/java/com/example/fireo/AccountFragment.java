@@ -59,7 +59,7 @@ public class AccountFragment extends Fragment implements AccountPresenter.Accoun
             @Override
             public void onClick(View v) {
                 DialogHelper dialogHelper = new DialogHelper(getActivity());
-                dialogHelper.create(true, getActivity().getString(R.string.logout_content), getActivity().getString(R.string.logout));
+                dialogHelper.createYesNoDialog(true, getActivity().getString(R.string.logout_content), getActivity().getString(R.string.logout));
                 dialogHelper.setDialogListener(new DialogHelper.DialogListener() {
                     @Override
                     public void onClick(boolean accepted) {

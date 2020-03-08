@@ -6,40 +6,114 @@
     android:layout_height="match_parent"
     tools:context=".AccountFragment">
 
-
-    <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/userImage"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/user"
-        app:civ_border_width="4dp"
-        app:civ_shadow="true"
+    <com.example.fireo.DeviceViewGroup
+        android:id="@+id/deviceViewGroup"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/userNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="219dp"
-        android:text="Username"
+        <ImageView
+            android:id="@+id/floor_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/blueprint_test" />
+
+
+<!--        <com.example.fireo.DeviceView-->
+<!--            android:id="@+id/device_view"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/fire"-->
+<!--            android:tint="@android:color/background_light" />-->
+
+    </com.example.fireo.DeviceViewGroup>
+
+
+
+    <ImageButton
+        android:id="@+id/right"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="112dp"
+        android:background="@drawable/arrow"
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/userImage"
-        app:layout_constraintTop_toTopOf="@+id/userImage" />
+        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintStart_toEndOf="@+id/top"
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        tools:ignore="RtlHardcoded" />
 
-    <TextView
-        android:id="@+id/user_authority_text"
+    <ImageButton
+        android:id="@+id/left"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="100dp"
+        android:background="@drawable/arrow"
+        android:rotation="270"
+        app:layout_constraintBottom_toBottomOf="@+id/right"
+        app:layout_constraintEnd_toStartOf="@+id/right"
+        app:layout_constraintTop_toTopOf="@+id/right" />
+
+    <ImageButton
+        android:id="@+id/top"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/arrow"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintStart_toEndOf="@+id/left"
+        app:layout_constraintTop_toBottomOf="@+id/deviceViewGroup"
+        app:layout_goneMarginTop="20dp" />
+
+    <ImageButton
+        android:id="@+id/bottom"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/arrow"
+        android:rotation="180"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/top"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/top"
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        app:layout_constraintVertical_bias="0.646"
+        tools:ignore="RtlHardcoded" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/save_device"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_save_black_24dp"
+        app:backgroundTint="@android:color/white"
+        app:fab_size="mini"
+        app:layout_constraintBottom_toTopOf="@+id/fab_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deviceViewGroup"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Authority"
-        app:layout_constraintBottom_toBottomOf="@+id/userImage"
-        app:layout_constraintStart_toStartOf="@+id/userNameText"
-        app:layout_constraintTop_toBottomOf="@+id/userNameText"
-        app:layout_constraintVertical_bias="0.117" />
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_fab"
+        app:backgroundTint="@android:color/white"
+        app:fab_size="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

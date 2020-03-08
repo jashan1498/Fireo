@@ -1,2 +1,2 @@
-include ':app', ':justCode'
+include ':app', ':justCode', ':lib'
 rootProject.name='Fireo'

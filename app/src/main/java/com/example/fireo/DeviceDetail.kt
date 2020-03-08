@@ -89,7 +89,7 @@ class DeviceDetail : BaseApplication() {
 
     private fun makeInfoView(title: String, description: Any): View {
         val infoView: View = LayoutInflater.from(this).inflate(R.layout.info_card, null, false)
-        infoView.title.text = title
+        infoView.device_id_text.text = title
         infoView.detail.text = description.toString()
         return infoView
     }

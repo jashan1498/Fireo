@@ -10,6 +10,8 @@ public class Constants {
         public static final String DASHBOARD = "dashboard";
         public static final String DEVICE = "device";
         public static final String BUILDING = "building";
+        public static final String DEVICE_LIST_FULL = "device_list_full";
+
     }
 
 

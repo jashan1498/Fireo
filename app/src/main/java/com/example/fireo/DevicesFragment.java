@@ -2,7 +2,6 @@ package com.example.fireo;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,25 +26,15 @@ import com.example.fireo.model.Device;
 import com.example.fireo.presenter.DevicePresenter;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static com.example.fireo.BaseApplication.currentBuilding;
 
-@SuppressLint("DefaultLocale")
 public class DevicesFragment extends Fragment implements DevicePresenter.View, View.OnClickListener {
 
     static final String TAG = "DEVICES_FRAGMENT";
-    private DocumentSnapshot recentSnapshot;
-    private BaseApplication application;
+    public DeviceRecyclerAdapter adapter;
     private FloatingActionMenu fabMenu;
     private DevicePresenter presenter;
     private RecyclerView devicesView;
@@ -53,15 +42,9 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View, V
     private Context context;
     private Spinner floorSpinner;
     private TextView buildingNameView;
-    private DeviceRecyclerAdapter adapter;
-    private boolean isLoading = false;
-    private ArrayList<Device> list;
     private Building localBuilding = new Building();
-    private int floor = 0;
     private ImageView searchViewToggle;
-    private boolean isOpen = false;
     private LinearLayout searchViewParent;
-    private SearchView searchView;
 
     @Override
     public void onClick(View v) {
@@ -82,7 +65,7 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View, V
             this.context = view.getContext();
         }
 
-        presenter = new DevicePresenter();
+        presenter = new DevicePresenter(this);
         presenter.init(this);
 
         return view;
@@ -97,48 +80,16 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View, V
         }
     }
 
-    private void fetchItems() {
-        application.getFireStore().collection("building")
-                .document(currentBuilding.getBuildingId())
-                .collection("floor".concat(String.valueOf(floor))).orderBy("timeStamp").limit(10).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot documentSnapshot) {
-                ArrayList<Device> device = (ArrayList<Device>) documentSnapshot.toObjects(Device.class);
-                if (device.size() > 0) {
-                    setTime(documentSnapshot.getDocuments(), device);
-                    list = device;
-                    adapter.setData(list);
-                    recentSnapshot = documentSnapshot.getDocuments().get(documentSnapshot.size() - 1);
-                    isLoading = false;
-                }
-            }
-        });
-    }
-
-    private void setTime(List<DocumentSnapshot> documents, List<Device> device) {
-
-        for (int x = 0; x < device.size(); x++) {
-
-            Timestamp timestamp = (Timestamp) documents.get(x).get("timeStamp");
-            assert timestamp != null;
-            long decimal = timestamp.getSeconds();
-            String timeStamp = String.format("%03d days, %02d hours , %02d min",
-                    TimeUnit.SECONDS.toDays(decimal),
-                    TimeUnit.SECONDS.toHours(decimal),
-                    TimeUnit.SECONDS.toMinutes(decimal));
-            device.get(x).setTimeStamp(timeStamp);
-        }
-    }
-
     @Override
     public void setUpRecyclerView() {
         setData();
-        list = new ArrayList<>();
+        presenter.list = new ArrayList<>();
 
-        adapter = new DeviceRecyclerAdapter(list, context);
+        adapter = new DeviceRecyclerAdapter(presenter.list, context);
         devicesView.setLayoutManager(new CustomLinearLayoutManager(context));
+        presenter.setDeviceRecyclerAdapter(adapter);
         devicesView.setAdapter(adapter);
-        presenter.setRecyclerList(list);
+        presenter.setRecyclerList(presenter.list);
         adapter.setOnDeviceInfoViewClickListener(device -> {
             if (device != null) {
                 DeviceDetail.startActivityWithObject(device, context);
@@ -150,60 +101,11 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View, V
                 super.onScrolled(recyclerView, dx, dy);
                 CustomLinearLayoutManager linearLayoutManager = (CustomLinearLayoutManager) recyclerView.getLayoutManager();
 
-                if (linearLayoutManager != null) {
-                    if (linearLayoutManager.findLastVisibleItemPosition() >= list.size() - 1 && !isLoading) {
-                        adapter.loadMore();
-                        loadMore();
-                        isLoading = true;
-                    }
-                }
+                presenter.setLayoutManager(linearLayoutManager);
             }
         });
     }
 
-    private void loadMore() {
-        if (recentSnapshot != null) {
-            application.getFireStore().collection("building")
-                    .document(currentBuilding.getBuildingId())
-                    .collection("floor".concat(String.valueOf(floor))).orderBy("timeStamp").startAfter(recentSnapshot).limit(10).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        QuerySnapshot snapshots = task.getResult();
-                        inflateObjects(snapshots);
-                    }
-                }
-            });
-        }
-    }
-
-    @SuppressLint("DefaultLocale")
-    private void inflateObjects(QuerySnapshot snapshots) {
-        List<Device> device = snapshots.toObjects(Device.class);
-
-        setTime(snapshots.getDocuments(), device);
-
-        if (device.size() > 0) {
-            if (list.get(list.size() - 1) == null) {
-                list.remove(list.size() - 1);
-            }
-            list.addAll(device);
-            recentSnapshot = snapshots.getDocuments().get(snapshots.size() - 1);
-            adapter.setData(list);
-            isLoading = false;
-        } else {
-            hideLoadingView();
-        }
-    }
-
-    private void hideLoadingView() {
-        isLoading = true;
-        if (list.get(list.size() - 1) == null) {
-            list.remove(list.size() - 1);
-            adapter.setData(list);
-
-        }
-    }
 
     @Override
     public void DeviceChangeListener() {
@@ -225,8 +127,9 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View, V
         adapter.notifyDataSetChanged();
     }
 
+    @Override
     public void init() {
-        application = (BaseApplication) getActivity();
+        BaseApplication application = (BaseApplication) getActivity();
 
         devicesView = view.findViewById(R.id.recyclerView);
         fabMenu = view.findViewById(R.id.fabMenu);
@@ -240,7 +143,7 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View, V
         floorSpinner = view.findViewById(R.id.floor_spinner);
         buildingNameView = view.findViewById(R.id.building_name);
         searchViewParent = view.findViewById(R.id.search_view_parent);
-        searchView = view.findViewById(R.id.search_view);
+        SearchView searchView = view.findViewById(R.id.search_view);
 
         ObjectAnimator translateAnimator = ObjectAnimator.ofFloat(searchViewParent, "translationY", 0f, 130f);
         ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(searchViewParent, "alpha", 0f, 1f);
@@ -250,16 +153,29 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View, V
         searchViewToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isOpen) {
+                if (presenter.isOpen) {
                     hideSearch(translateAnimator, alphaAnimator);
                 } else {
                     openSearch(translateAnimator, alphaAnimator);
                 }
-                isOpen = !isOpen;
+                presenter.isOpen = !presenter.isOpen;
 
             }
         });
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                presenter.query(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                presenter.query(newText);
+                return false;
+            }
+        });
 
         batteryFab.setOnClickListener(this);
         networkFab.setOnClickListener(this);
@@ -302,22 +218,22 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View, V
         alphaAnimator.reverse();
     }
 
-    private void setData() {
+    @Override
+    public void setData() {
         if (currentBuilding != null && BaseApplication.currentBuilding.getBuildingId() != null) {
             Integer[] floors = new Integer[BaseApplication.currentBuilding.getFloorCount()];
             buildingNameView.setText(BaseApplication.currentBuilding.getBuildingName());
             for (int x = 0; x < BaseApplication.currentBuilding.getFloorCount(); x++) {
                 floors[x] = x;
             }
-            ArrayAdapter spinnerAdapter = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_list_item_1, floors);
+            ArrayAdapter spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, floors);
             floorSpinner.setAdapter(spinnerAdapter);
             floorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if (view != null && view instanceof TextView) {
+                    if (view instanceof TextView) {
                         ((TextView) view).setTextColor(getActivity().getResources().getColor(R.color.creamish_white, null));
-                        floor = position;
-                        refreshList();
+                        presenter.spinnerItemSelected(position);
                     }
                 }
 
@@ -327,12 +243,5 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View, V
                 }
             });
         }
-    }
-
-    private void refreshList() {
-        list.clear();
-        adapter.setData(list);
-        fetchItems();
-//        isLoading = false;
     }
 }

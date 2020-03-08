@@ -17,9 +17,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.fireo.Utils.SharedPrefUtils;
+import com.example.fireo.model.Device;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends BaseApplication {
@@ -35,6 +38,8 @@ public class MainActivity extends BaseApplication {
     LocationFragment locationFragment;
     AccountFragment accountFragment;
     Toolbar actionBar;
+    private ArrayList<Device> deviceList = new ArrayList<Device>();
+    private int currentDeviceFragmentFloor = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,14 @@ public class MainActivity extends BaseApplication {
         setBottomMenuClickListener();
         initFragments();
         Toast.makeText(this, "Welcome " + firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
+    }
 
+    public ArrayList<Device> getDeviceList() {
+        return deviceList;
+    }
+
+    public void setDeviceList(ArrayList<Device> deviceList) {
+        this.deviceList = deviceList;
     }
 
     @Override

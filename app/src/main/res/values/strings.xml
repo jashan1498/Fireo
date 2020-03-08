@@ -42,6 +42,8 @@
     <string name="no">NO</string>
     <string name="logout_content">Are you sure you want to logout ?</string>
     <string name="floor">Floor</string>
+    <string name="ok">Okay</string>
+    <string name="fault_type">Fault Type</string>
 
 
 </resources>

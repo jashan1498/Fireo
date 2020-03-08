@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,21 +17,28 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.fireo.model.Building;
+import com.example.fireo.model.Device;
+
+import java.util.ArrayList;
 
 public class MapFragment extends Fragment implements MapPresenter.View {
     public static final String TAG = "MAP_FRAGMENT";
+    public FrameLayout parentLayout;
     View view;
     private Building currentBuilding;
     private MapPresenter presenter;
     private Spinner floorSpinner;
     private TextView buildingNameView;
     private ImageView blueprint;
+    private int floor = 0;
+    private ArrayList<Device> devicesList = new ArrayList<Device>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.map_view, container, false);
-        presenter = new MapPresenter(this);
+        parentLayout = view.findViewById(R.id.image_parent_view);
+        presenter = new MapPresenter(this,parentLayout);
         return view;
     }
 
@@ -39,6 +47,7 @@ public class MapFragment extends Fragment implements MapPresenter.View {
         super.onResume();
         currentBuilding = BaseApplication.currentBuilding;
         setData();
+        presenter.fetchDevices(currentBuilding, floor);
     }
 
     @Override
@@ -64,6 +73,8 @@ public class MapFragment extends Fragment implements MapPresenter.View {
                     if (view != null && view instanceof TextView) {
                         ((TextView) view).setTextColor(getActivity().getResources().getColor(R.color.creamish_white, null));
                         setImage(position);
+                        floor = position;
+                        presenter.fetchDevices(currentBuilding,floor);
                     }
                 }
 
@@ -78,4 +89,5 @@ public class MapFragment extends Fragment implements MapPresenter.View {
     private void setImage(int position) {
         Glide.with(getActivity()).load(currentBuilding.getFloorImg().get(position)).into(blueprint);
     }
+
 }
