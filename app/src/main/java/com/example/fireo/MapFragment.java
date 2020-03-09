@@ -17,9 +17,6 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.fireo.model.Building;
-import com.example.fireo.model.Device;
-
-import java.util.ArrayList;
 
 public class MapFragment extends Fragment implements MapPresenter.View {
     public static final String TAG = "MAP_FRAGMENT";
@@ -31,7 +28,6 @@ public class MapFragment extends Fragment implements MapPresenter.View {
     private TextView buildingNameView;
     private ImageView blueprint;
     private int floor = 0;
-    private ArrayList<Device> devicesList = new ArrayList<Device>();
 
     @Nullable
     @Override

@@ -2,6 +2,9 @@ package com.example.fireo.presenter;
 
 import android.app.Activity;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
@@ -36,6 +39,7 @@ public class LocationPresenter {
             application = (BaseApplication) fragment.getActivity();
             context = fragment.getActivity();
             locationFragment.init();
+            locationFragment.setData();
         }
     }
 
@@ -44,16 +48,19 @@ public class LocationPresenter {
         for (int i = 0; i < parentLayout.getChildCount(); i++) {
             if (parentLayout.getChildAt(i) instanceof DeviceView) {
                 DeviceView deviceView = (DeviceView) parentLayout.getChildAt(i);
-
-                Device device = deviceView.getDevice();
-                float x = deviceView.getX();
-                float y = deviceView.getY();
-                device.setX(x);
-                device.setY(y);
-                devices.add(device);
+                devices.add(createDevice(deviceView));
             }
         }
         updateDatabase(devices);
+    }
+
+    Device createDevice(DeviceView deviceView) {
+        Device device = deviceView.getDevice();
+        float x = deviceView.getX();
+        float y = deviceView.getY();
+        device.setX(x);
+        device.setY(y);
+        return device;
     }
 
     private void updateDatabase(ArrayList<Device> devices) {
@@ -65,8 +72,8 @@ public class LocationPresenter {
             batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
-                        Log.d("blaaaaaa","success");
+                    if (task.isSuccessful()) {
+                        Log.d("blaaaaaa", "success");
                     }
                 }
             });
@@ -93,12 +100,23 @@ public class LocationPresenter {
 
     public void refreshList() {
         DeviceView deviceView;
+        recreateParent();
         for (Device device : devicesList) {
             deviceView = new DeviceView(context);
             deviceView.setDevice(device);
-            deviceView.setX(device.getX());
-            deviceView.setY(device.getY());
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.topMargin = (int) device.getY();
+            params.leftMargin = (int) device.getX();
+            deviceView.setLayoutParams(params);
             parentLayout.addView(deviceView);
+        }
+    }
+
+    private void recreateParent() {
+        if (parentLayout.getChildAt(0) instanceof ImageView) {
+            ImageView bgImage = (ImageView) parentLayout.getChildAt(0);
+            parentLayout.removeAllViews();
+            parentLayout.addView(bgImage);
         }
     }
 

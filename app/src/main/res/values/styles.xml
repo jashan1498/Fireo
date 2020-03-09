@@ -24,9 +24,12 @@
 
 <!--    ////////////////////////////////-->
 
-
     <style name="action_bar_style" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:titleTextStyle">@style/title_TextStyle</item>
+    </style>
+
+    <style name="action_bar_white_toolbar" parent="Widget.AppCompat.ActionBar">
+        <item name="android:tint">@android:color/background_light</item>
     </style>
 
     <style name="title_TextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">

@@ -6,15 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".AccountFragment">
 
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/building_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="17dp"
+            android:layout_weight="1"
+            android:gravity="start|center_vertical"
+            android:textColor="@color/creamish_white"
+            android:textSize="19sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/floor"
+            android:textColor="@color/creamish_white"
+            android:textSize="19sp" />
+
+        <Spinner
+            android:id="@+id/floor_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/creamish_white"
+            android:foregroundTint="@color/creamish_white" />
+
+    </LinearLayout>
+
+
     <com.example.fireo.DeviceViewGroup
         android:id="@+id/deviceViewGroup"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
@@ -24,14 +64,6 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/app_name"
             android:src="@drawable/blueprint_test" />
-
-
-<!--        <com.example.fireo.DeviceView-->
-<!--            android:id="@+id/device_view"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/fire"-->
-<!--            android:tint="@android:color/background_light" />-->
 
     </com.example.fireo.DeviceViewGroup>
 
@@ -67,8 +99,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/arrow"
         app:layout_constraintBottom_toTopOf="@+id/bottom"
         app:layout_constraintStart_toEndOf="@+id/left"
@@ -79,6 +110,7 @@
         android:id="@+id/bottom"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/arrow"
         android:rotation="180"
         app:layout_constraintBottom_toBottomOf="parent"

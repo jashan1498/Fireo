@@ -3,12 +3,10 @@ package com.example.fireo.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.PropertyName;
 
-import java.lang.reflect.Field;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Device implements Parcelable {
 
@@ -72,8 +70,6 @@ public class Device implements Parcelable {
     private float x;
     @PropertyName("y")
     private float y;
-
-
     @PropertyName("id")
     private String id;
 
@@ -106,6 +102,7 @@ public class Device implements Parcelable {
         this.upTime = upTime;
         this.x = x;
         this.y = y;
+        this.id = id;
     }
 
     public Device() {
@@ -133,7 +130,22 @@ public class Device implements Parcelable {
         this.upTime = in.readString();
         this.x = in.readFloat();
         this.y = in.readFloat();
+        this.id = in.readString();
 
+    }
+
+    public String toString() {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("buildingId", buildingId);
+            jsonObject.put("deviceId", id);
+            jsonObject.put("floor", floor);
+
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public static Creator getCREATOR() {
@@ -378,5 +390,6 @@ public class Device implements Parcelable {
         dest.writeString(this.upTime);
         dest.writeFloat(this.x);
         dest.writeFloat(this.y);
+        dest.writeString(this.id);
     }
 }

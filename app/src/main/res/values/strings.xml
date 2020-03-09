@@ -9,7 +9,7 @@
     <string name="home">Home</string>
     <string name="devices">Devices</string>
     <string name="map">Map</string>
-    <string name="places">Places</string>
+    <string name="places">Location</string>
     <string name="user">User</string>
     <string name="total_devices">Total Devices</string>
     <string name="devices_status">Devices Status</string>
@@ -44,6 +44,7 @@
     <string name="floor">Floor</string>
     <string name="ok">Okay</string>
     <string name="fault_type">Fault Type</string>
+    <string name="generate_qr_code">generate device code</string>
 
 
 </resources>
