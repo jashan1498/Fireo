@@ -20,7 +20,7 @@ import com.example.fireo.model.Building;
 
 public class MapFragment extends Fragment implements MapPresenter.View {
     public static final String TAG = "MAP_FRAGMENT";
-    public FrameLayout parentLayout;
+    private FrameLayout parentLayout;
     View view;
     private Building currentBuilding;
     private MapPresenter presenter;

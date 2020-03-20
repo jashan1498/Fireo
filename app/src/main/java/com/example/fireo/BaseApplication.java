@@ -30,7 +30,7 @@ public class BaseApplication extends AppCompatActivity {
     public static Building currentBuilding = new Building();
     private FirebaseFirestore fireStore;
 
-    BaseApplication() {
+    public BaseApplication() {
         setFirebaseSettings();
         initFirebase();
     }
