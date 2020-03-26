@@ -1,4 +1,4 @@
-package com.example.fireo
+package com.example.fireo.activities
 
 import android.animation.Animator
 import android.content.Intent
@@ -8,8 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
+import com.example.fireo.BaseApplication
 import com.example.fireo.Constants.Constants
 import com.example.fireo.Constants.Constants.DEFAULT_USER_TYPE
+import com.example.fireo.R
 import com.example.fireo.model.User
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_sign_up.*

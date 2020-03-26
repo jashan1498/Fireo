@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import com.example.fireo.DummyDataAdd;
+import com.example.fireo.R;
 import com.example.fireo.databinding.HomeViewBindingImpl;
 import com.example.fireo.model.Dashboard;
 import com.example.fireo.presenter.HomePresenter;
 
 public class HomeFragment extends Fragment implements HomePresenter.HomeView {
-    static final String TAG = "HOME_FRAGMENT";
+    public static final String TAG = "HOME_FRAGMENT";
     private LinearLayout tempCard;
     private HomePresenter homePresenter;
     private HomeViewBindingImpl binding;

@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -16,7 +16,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.fireo.BaseApplication;
+import com.example.fireo.R;
 import com.example.fireo.Utils.SharedPrefUtils;
+import com.example.fireo.fragments.AccountFragment;
+import com.example.fireo.fragments.DevicesFragment;
+import com.example.fireo.fragments.HomeFragment;
+import com.example.fireo.fragments.LocationFragment;
+import com.example.fireo.fragments.MapFragment;
 import com.example.fireo.model.Device;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -162,7 +169,7 @@ public class MainActivity extends BaseApplication {
             } else {
                 String results = result.getContents();
                 if (isValidInformation(results)) {
-                    DeviceDetail.startActivityWithString(results, this);
+                    DeviceDetailActivity.startActivityWithString(results, this);
                 } else {
                     Toast.makeText(this, this.getResources().getString(R.string.qr_error_string), Toast.LENGTH_SHORT).show();
                 }

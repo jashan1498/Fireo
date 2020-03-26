@@ -15,37 +15,37 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity
-            android:name=".AuthorisedBuildingsActivity"
+            android:name=".activities.AuthorisedBuildingsActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".DummyDataAdd"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activities.SignUpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProfileSettingsActivity"
+            android:name=".activities.ProfileSettingsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".QrScanActivity"
+            android:name=".activities.QrScanActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DeviceDetail"
+            android:name=".activities.DeviceDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AccountFragment"
+            android:name=".fragments.AccountFragment"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashScreenTheme">
             <intent-filter>

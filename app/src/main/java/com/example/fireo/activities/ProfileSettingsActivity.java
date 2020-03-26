@@ -1,9 +1,11 @@
-package com.example.fireo;
+package com.example.fireo.activities;
 
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 
+import com.example.fireo.BaseApplication;
+import com.example.fireo.R;
 import com.example.fireo.databinding.ActivityProfileSettingsBinding;
 import com.example.fireo.presenter.ProfileSettingsPresenter;
 

@@ -6,7 +6,7 @@
     android:id="@+id/motionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -89,7 +89,7 @@
             android:src="@drawable/ic_search"
             android:tint="@color/creamish_white" />
     </LinearLayout>
-    
+
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/fabMenu"
         android:layout_width="match_parent"

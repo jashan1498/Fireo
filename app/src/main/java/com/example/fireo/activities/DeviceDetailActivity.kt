@@ -1,4 +1,4 @@
-package com.example.fireo
+package com.example.fireo.activities
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.GridLayout
+import com.example.fireo.BaseApplication
 import com.example.fireo.Constants.Constants
+import com.example.fireo.R
 import com.example.fireo.Utils.DialogHelper
 import com.example.fireo.model.Device
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,7 +25,7 @@ import kotlinx.android.synthetic.main.activity_device_detail.*
 import kotlinx.android.synthetic.main.info_card.view.*
 import org.json.JSONObject
 
-class DeviceDetail : BaseApplication() {
+class DeviceDetailActivity : BaseApplication() {
 
     private lateinit var device: Device
     private var firebaseDatabase: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -37,7 +39,7 @@ class DeviceDetail : BaseApplication() {
     companion object {
         @JvmStatic
         fun startActivityWithObject(device: Device, context: Context) {
-            val activityIntent = Intent(context, DeviceDetail::class.java)
+            val activityIntent = Intent(context, DeviceDetailActivity::class.java)
             activityIntent.putExtra(DEVICE_DETAIL_DATA, device)
             activityIntent.putExtra(IS_STARTED_WITH_OBJECT, true)
             context.startActivity(activityIntent)
@@ -45,7 +47,7 @@ class DeviceDetail : BaseApplication() {
 
         @JvmStatic
         fun startActivityWithString(deviceInfo: String, context: Context) {
-            val activityIntent = Intent(context, DeviceDetail::class.java)
+            val activityIntent = Intent(context, DeviceDetailActivity::class.java)
             activityIntent.putExtra(DEVICE_CONTENT_EXTRA, deviceInfo)
             activityIntent.putExtra(IS_STARTED_WITH_OBJECT, false)
             context.startActivity(activityIntent)

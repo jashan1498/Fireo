@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.fragments;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -20,6 +20,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fireo.BaseApplication;
+import com.example.fireo.R;
+import com.example.fireo.activities.DeviceDetailActivity;
+import com.example.fireo.adapters.CustomLinearLayoutManager;
 import com.example.fireo.adapters.DeviceRecyclerAdapter;
 import com.example.fireo.model.Building;
 import com.example.fireo.model.Device;
@@ -33,7 +37,7 @@ import static com.example.fireo.BaseApplication.currentBuilding;
 
 public class DevicesFragment extends Fragment implements DevicePresenter.View, View.OnClickListener {
 
-    static final String TAG = "DEVICES_FRAGMENT";
+    public static final String TAG = "DEVICES_FRAGMENT";
     public DeviceRecyclerAdapter adapter;
     private FloatingActionMenu fabMenu;
     private DevicePresenter presenter;
@@ -92,7 +96,7 @@ public class DevicesFragment extends Fragment implements DevicePresenter.View, V
         presenter.setRecyclerList(presenter.list);
         adapter.setOnDeviceInfoViewClickListener(device -> {
             if (device != null) {
-                DeviceDetail.startActivityWithObject(device, context);
+                DeviceDetailActivity.startActivityWithObject(device, context);
             }
         });
         devicesView.addOnScrollListener(new RecyclerView.OnScrollListener() {

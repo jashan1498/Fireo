@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,13 +16,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.fireo.R;
+import com.example.fireo.custom_view.DeviceViewGroup;
 import com.example.fireo.presenter.LocationPresenter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import static com.example.fireo.BaseApplication.currentBuilding;
 
 public class LocationFragment extends Fragment implements View.OnClickListener, LocationPresenter.View {
-    static final String TAG = "LOCATION_FRAGMENT";
+    public static final String TAG = "LOCATION_FRAGMENT";
     View view;
     private DeviceViewGroup deviceViewGroup;
     private ImageButton top, bottom, left, right;

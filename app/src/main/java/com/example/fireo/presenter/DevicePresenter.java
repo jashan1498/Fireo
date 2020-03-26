@@ -6,10 +6,9 @@ import androidx.annotation.NonNull;
 
 import com.example.fireo.BaseApplication;
 import com.example.fireo.Constants.Constants;
-import com.example.fireo.CustomLinearLayoutManager;
-import com.example.fireo.DevicesFragment;
-import com.example.fireo.MainActivity;
+import com.example.fireo.adapters.CustomLinearLayoutManager;
 import com.example.fireo.adapters.DeviceRecyclerAdapter;
+import com.example.fireo.fragments.DevicesFragment;
 import com.example.fireo.model.Device;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;

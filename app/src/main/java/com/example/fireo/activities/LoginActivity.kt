@@ -1,4 +1,4 @@
-package com.example.fireo
+package com.example.fireo.activities
 
 import android.animation.Animator
 import android.content.Intent
@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
+import com.example.fireo.BaseApplication
+import com.example.fireo.R
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Pattern

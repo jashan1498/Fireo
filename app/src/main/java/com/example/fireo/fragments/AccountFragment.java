@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,12 +15,17 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.example.fireo.BaseApplication;
+import com.example.fireo.R;
 import com.example.fireo.Utils.DialogHelper;
 import com.example.fireo.Utils.SharedPrefUtils;
+import com.example.fireo.activities.AuthorisedBuildingsActivity;
+import com.example.fireo.activities.MainActivity;
+import com.example.fireo.activities.ProfileSettingsActivity;
 import com.example.fireo.presenter.AccountPresenter;
 
 public class AccountFragment extends Fragment implements AccountPresenter.AccountView {
-    static final String TAG = "ACCOUNT_FRAGMENT";
+    public static final String TAG = "ACCOUNT_FRAGMENT";
     private Switch themeSwitch;
     private View view;
     private AccountPresenter presenter;

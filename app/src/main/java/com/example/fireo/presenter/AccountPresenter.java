@@ -1,6 +1,6 @@
 package com.example.fireo.presenter;
 
-import com.example.fireo.AccountFragment;
+import com.example.fireo.fragments.AccountFragment;
 
 public class AccountPresenter {
     AccountFragment activity;

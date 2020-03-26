@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fireo.Constants.Constants;
 import com.example.fireo.Utils.LoginUtils;
 import com.example.fireo.Utils.SharedPrefUtils;
+import com.example.fireo.activities.SplashActivity;
 import com.example.fireo.model.Building;
 import com.example.fireo.model.Buildings;
 import com.example.fireo.model.User;
