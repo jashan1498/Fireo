@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fireo.Constants.Constants;
+import com.example.fireo.Utils.LoginUtils;
 import com.example.fireo.Utils.SharedPrefUtils;
 import com.example.fireo.model.Building;
 import com.example.fireo.model.Buildings;
@@ -105,6 +106,10 @@ public class BaseApplication extends AppCompatActivity {
     public void logout() {
         FirebaseAuth.getInstance().signOut();
         firebaseUser = null;
+        currentBuilding = null;
+        buildingsList.getBuildingsList().clear();
+        LoginUtils loginUtils = new LoginUtils(this);
+        loginUtils.logout();
         this.finishAffinity();
         Intent redirectToBase = new Intent(this, SplashActivity.class);
         startActivity(redirectToBase);

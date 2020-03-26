@@ -38,7 +38,7 @@ public class Device implements Parcelable {
     private String BuildingName;
     @PropertyName("faultType")
     private int faultType;
-    @PropertyName("timeStamps")
+    @PropertyName("timeStamp")
     private String timeStamp;
     @PropertyName("location")
     private String location;

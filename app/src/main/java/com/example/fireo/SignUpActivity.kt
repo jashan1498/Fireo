@@ -83,7 +83,7 @@ class SignUpActivity : BaseApplication(), View.OnClickListener {
     }
 
     private fun redirectToMain() {
-        val redirectToMain = Intent(this, MainActivity::class.java)
+        val redirectToMain = Intent(this, SplashActivity::class.java)
         lottieAnim.setAnimation(R.raw.animation_done)
         lottieAnim.pauseAnimation()
         lottieAnim.loop(false)

@@ -20,5 +20,7 @@ public class Constants {
         public static final int TYPE_NETWORK = 1;
         public static final int TYPE_PRESSURE = 2;
         public static final int TYPE_BATTERY = 3;
+        public static final int NO_FAULT = -1;
+        public static final int UNKNOWN_FAULT = 10000;
     }
 }

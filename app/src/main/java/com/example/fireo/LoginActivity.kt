@@ -11,9 +11,6 @@ import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.back_btn
-import kotlinx.android.synthetic.main.activity_login.pass_edit_text
-import kotlinx.android.synthetic.main.activity_login.username_edit_text
 import java.util.regex.Pattern
 
 class LoginActivity : BaseApplication(), View.OnClickListener {
@@ -68,7 +65,7 @@ class LoginActivity : BaseApplication(), View.OnClickListener {
                     if (user != null) {
                         if (user.email!!.isNotEmpty()) {
                             firebaseUser = user
-                            val redirectToMain = Intent(this, MainActivity::class.java)
+                            val redirectToMain = Intent(this, SplashActivity::class.java)
                             lottieAnim.setAnimation(R.raw.animation_done)
                             lottieAnim.pauseAnimation()
                             lottieAnim.loop(false)

@@ -11,7 +11,6 @@ import com.example.fireo.R;
 import com.example.fireo.model.Dashboard;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 public class HomePresenter {
@@ -24,9 +23,8 @@ public class HomePresenter {
 
     public void fetchData() {
         BaseApplication application = (BaseApplication) fragment.getActivity();
-        if (application != null) {
-            FirebaseUser user = BaseApplication.getFirebaseUser();
-            application.getFireStore().collection(Constants.Collections.DASHBOARD).document(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        if (application != null && BaseApplication.currentBuilding.getBuildingId() != null) {
+            application.getFireStore().collection(Constants.Collections.DASHBOARD).document(BaseApplication.currentBuilding.getBuildingId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {

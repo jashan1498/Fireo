@@ -15,8 +15,6 @@ import androidx.fragment.app.Fragment;
 import com.example.fireo.databinding.HomeViewBindingImpl;
 import com.example.fireo.model.Dashboard;
 import com.example.fireo.presenter.HomePresenter;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeFragment extends Fragment implements HomePresenter.HomeView {
     static final String TAG = "HOME_FRAGMENT";
@@ -38,10 +36,6 @@ public class HomeFragment extends Fragment implements HomePresenter.HomeView {
     @Override
     public void init() {
         if (getActivity() != null) {
-            FirebaseUser firebaseUser = BaseApplication.getFirebaseUser();
-            FirebaseFirestore firestore = ((BaseApplication) getActivity()).getFireStore();
-
-            String uid = firebaseUser.getUid();
             tempCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -49,10 +43,14 @@ public class HomeFragment extends Fragment implements HomePresenter.HomeView {
                     startActivity(intent);
                 }
             });
-
-
         }
+    }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        homePresenter.fetchData();
     }
 
     @Override

@@ -32,8 +32,13 @@ public class SplashActivity extends BaseApplication {
         Glide.with(this).asGif().load(R.drawable.lit_extinguisher).into(gifView);
         utils = new LoginUtils(SplashActivity.this);
         fetchUser();
-        new Handler().postDelayed(()
-                -> redirectUser(firebaseUser), 1000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                redirectUser(firebaseUser);
+            }
+        }, 2000);
+
     }
 
 
@@ -46,7 +51,7 @@ public class SplashActivity extends BaseApplication {
                         user = task.getResult().toObject(User.class);
                         if (user != null) {
                             if (user.getBuildingList().size() > 0) {
-                               fetchBuildingNames();
+                                fetchBuildingNames();
                             }
                         }
                     }
@@ -72,13 +77,14 @@ public class SplashActivity extends BaseApplication {
     }
 
     private void redirectUser(FirebaseUser user) {
-        Intent intent;
         if (user != null) {
-            intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            startActivity(intent);
+
         } else {
-            intent = new Intent(SplashActivity.this, LoginActivity.class);
+            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
-        startActivity(intent);
         this.finish();
     }
 }

@@ -22,6 +22,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 
@@ -158,11 +161,30 @@ public class MainActivity extends BaseApplication {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 String results = result.getContents();
-                DeviceDetail.startActivityWithString(results, this);
+                if (isValidInformation(results)) {
+                    DeviceDetail.startActivityWithString(results, this);
+                } else {
+                    Toast.makeText(this, this.getResources().getString(R.string.qr_error_string), Toast.LENGTH_SHORT).show();
+                }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private boolean isValidInformation(String intentInfo) {
+        try {
+            JSONObject jsonObject = new JSONObject(intentInfo);
+            String buildingId = jsonObject.get("buildingId").toString();
+            String deviceId = jsonObject.get("deviceId").toString();
+            String floor = jsonObject.get("floor").toString();
+
+            return !buildingId.isEmpty() && !deviceId.isEmpty() && !floor.isEmpty();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return false;
+
     }
 
 

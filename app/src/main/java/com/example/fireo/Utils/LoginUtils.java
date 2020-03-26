@@ -38,6 +38,13 @@ public class LoginUtils {
         }
     }
 
+    public void logout() {
+        SharedPreferences.Editor editor = context.getSharedPreferences(CURRENT_USER_NAME,
+                MODE_PRIVATE).edit();
+        editor.putString(CURRENT_USER_NAME, null);
+        editor.apply();
+    }
+
     private void saveState() {
         SharedPreferences.Editor editor = context.getSharedPreferences(CURRENT_USER_NAME,
                 MODE_PRIVATE).edit();

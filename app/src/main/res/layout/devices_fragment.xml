@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="0dp"
             android:backgroundTint="@color/creamish_white"
             android:foregroundTint="@color/creamish_white" />
 
@@ -86,11 +86,10 @@
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:tint="@color/creamish_white"
-            android:src="@drawable/ic_search" />
+            android:src="@drawable/ic_search"
+            android:tint="@color/creamish_white" />
     </LinearLayout>
-
-
+    
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/fabMenu"
         android:layout_width="match_parent"

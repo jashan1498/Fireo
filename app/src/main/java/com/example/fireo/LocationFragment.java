@@ -51,16 +51,11 @@ public class LocationFragment extends Fragment implements View.OnClickListener, 
     public void onResume() {
         super.onResume();
         presenter.fetchDevices(currentBuilding, floor);
+        setData();
     }
 
     private void setClickListeners() {
         vibe = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-
-        top.setOnClickListener(this);
-        left.setOnClickListener(this);
-        right.setOnClickListener(this);
-        bottom.setOnClickListener(this);
-        save.setOnClickListener(this);
 
     }
 
