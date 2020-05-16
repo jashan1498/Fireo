@@ -12,7 +12,7 @@ public class SharedPrefUtils {
 
     private static final String APP_LOCALE_FILE_NAME = "APP_LOCALE";
     private static final String APP_THEME = "APP_THEME";
-    private static final String APP_DATA = "APP_THEME";
+    private static final String APP_DATA = "APP_DATA";
     public static final String CURRENT_BUILDING = "CURRENT_BUILDING";
     private static Locale locale;
     private Context context;
@@ -37,7 +37,6 @@ public class SharedPrefUtils {
     public void setLoginListener(LoginListener loginListener) {
         this.loginListener = loginListener;
     }
-
 
     public String getLanguage() {
         return locale.getLanguage();

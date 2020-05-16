@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.presenter;
 
 import android.app.Activity;
 import android.util.Log;
@@ -6,7 +6,10 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 
+import com.example.fireo.BaseApplication;
 import com.example.fireo.Constants.Constants;
+import com.example.fireo.custom_view.DeviceView;
+import com.example.fireo.fragments.MapFragment;
 import com.example.fireo.model.Building;
 import com.example.fireo.model.Device;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,10 +38,11 @@ public class MapPresenter {
         }
     }
 
-    void fetchDevices(Building currentBuilding, int floor) {
+    public void fetchDevices(Building currentBuilding, int floor) {
         if (currentBuilding.getBuildingId() != null) {
             if (this.floor != floor || this.building != currentBuilding) {
-                application.getFireStore().collection(Constants.Collections.BUILDING).document(currentBuilding.getBuildingId()).collection("floor" + floor).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                application.getFireStore().collection(Constants.Collections.BUILDING).document(currentBuilding.getBuildingId()).collection("floor" + floor).get().addOnCompleteListener(
+                        new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {

@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.custom_view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,11 +6,12 @@ import android.content.res.ColorStateList;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.appcompat.widget.AppCompatImageView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.widget.ImageViewCompat;
 
+import com.example.fireo.R;
 import com.example.fireo.Utils.DialogHelper;
 import com.example.fireo.model.Device;
 

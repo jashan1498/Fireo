@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.example.fireo.BaseApplication;
 import com.example.fireo.Constants.Constants;
-import com.example.fireo.HomeFragment;
 import com.example.fireo.R;
+import com.example.fireo.fragments.HomeFragment;
 import com.example.fireo.model.Dashboard;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,7 +47,6 @@ public class HomePresenter {
         void init();
 
         void setData(Dashboard dashboard);
-
 
     }
 }

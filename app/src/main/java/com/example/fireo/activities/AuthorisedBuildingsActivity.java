@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,10 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fireo.BaseApplication;
+import com.example.fireo.R;
 import com.example.fireo.Utils.SharedPrefUtils;
+import com.example.fireo.adapters.BuildingListAdapter;
 import com.example.fireo.model.ItemClickListener;
 
 public class AuthorisedBuildingsActivity extends BaseApplication {

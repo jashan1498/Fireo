@@ -49,6 +49,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="qr_error_string">Invalid Device Information !! Please Try Again</string>
+    <string name="authority_text">\"Authority : \"</string>
+    <string name="email_invalid">Wrong Format For Email</string>
+    <string name="pass_invalid">Password must contain at least 7 characters</string>
+    <string name="invalid_phone">Enter a valid phone number</string>
+    <string name="invalid_info">Invalid Information</string>
 
 
 </resources>

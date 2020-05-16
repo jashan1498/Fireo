@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.adapters;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fireo.Constants.Constants;
 import com.example.fireo.Utils.LoginUtils;
 import com.example.fireo.Utils.SharedPrefUtils;
+import com.example.fireo.activities.SplashActivity;
 import com.example.fireo.model.Building;
 import com.example.fireo.model.Buildings;
 import com.example.fireo.model.User;
@@ -58,7 +59,6 @@ public class BaseApplication extends AppCompatActivity {
 
         if (firebaseAuth.getCurrentUser() != null) {
             firebaseUser = firebaseAuth.getCurrentUser();
-
         }
     }
 
@@ -104,15 +104,17 @@ public class BaseApplication extends AppCompatActivity {
     }
 
     public void logout() {
-        FirebaseAuth.getInstance().signOut();
-        firebaseUser = null;
-        currentBuilding = null;
-        buildingsList.getBuildingsList().clear();
+        SharedPrefUtils sharedPrefUtils = new SharedPrefUtils(this);
         LoginUtils loginUtils = new LoginUtils(this);
+
+        buildingsList.getBuildingsList().clear();
         loginUtils.logout();
+        currentBuilding = null;
+        sharedPrefUtils.save(SharedPrefUtils.CURRENT_BUILDING, null);
         this.finishAffinity();
         Intent redirectToBase = new Intent(this, SplashActivity.class);
         startActivity(redirectToBase);
-    }
+        FirebaseAuth.getInstance().signOut();
 
+    }
 }

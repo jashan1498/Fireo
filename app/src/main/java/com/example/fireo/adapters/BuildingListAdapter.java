@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fireo.R;
 import com.example.fireo.model.Building;
 import com.example.fireo.model.ItemClickListener;
 
@@ -18,7 +19,7 @@ public class BuildingListAdapter extends RecyclerView.Adapter<BuildingListAdapte
     private ArrayList<Building> buildingsList;
     private ItemClickListener itemClickListener;
 
-    BuildingListAdapter(ArrayList<Building> buildingsList) {
+    public BuildingListAdapter(ArrayList<Building> buildingsList) {
         this.buildingsList = buildingsList;
     }
 

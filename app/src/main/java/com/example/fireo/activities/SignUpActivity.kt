@@ -1,4 +1,4 @@
-package com.example.fireo
+package com.example.fireo.activities
 
 import android.animation.Animator
 import android.content.Intent
@@ -8,12 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
+import com.example.fireo.BaseApplication
 import com.example.fireo.Constants.Constants
 import com.example.fireo.Constants.Constants.DEFAULT_USER_TYPE
+import com.example.fireo.R
+import com.example.fireo.Utils.LoginHelper
 import com.example.fireo.model.User
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import java.util.regex.Pattern
 
 class SignUpActivity : BaseApplication(), View.OnClickListener {
 
@@ -54,9 +56,31 @@ class SignUpActivity : BaseApplication(), View.OnClickListener {
         val password = pass_edit_text.text.toString()
         val phone = phone_number.text.toString()
 
-        val emailValidation = userEmail.length > 6 && validateEmail(userEmail)
+        val emailValidation = userEmail.length > 6 && LoginHelper.validateEmail(userEmail)
         val passwordValidation = password.length > 7
         val phoneValidation = phone.length > 8
+
+        if (!emailValidation) {
+            Toast.makeText(
+                this,
+                this.resources.getString(R.string.email_invalid),
+                Toast.LENGTH_LONG
+            ).show()
+        } else if (!passwordValidation) {
+            Toast.makeText(
+                this,
+                this.resources.getString(R.string.pass_invalid),
+                Toast.LENGTH_LONG
+            ).show()
+        } else if (!passwordValidation) {
+            Toast.makeText(
+                this,
+                this.resources.getString(R.string.invalid_phone),
+                Toast.LENGTH_LONG
+            ).show()
+        }
+
+
 
         if (emailValidation && passwordValidation && phoneValidation) {
             lottieAnim.visibility = View.VISIBLE
@@ -120,16 +144,5 @@ class SignUpActivity : BaseApplication(), View.OnClickListener {
                     ).show()
                 }
             }
-    }
-
-    private fun validateEmail(userEmail: String): Boolean {
-        val regex = "[a-z|0-9|_%+-]+@[a-z|0-9]+.[a-z|0-9]+"
-        val pattern = Pattern.compile(regex)
-        val matcher = pattern.matcher(userEmail)
-        if (matcher.matches()) {
-            return true
-        }
-        Toast.makeText(this, "Wrong Format For Email", Toast.LENGTH_LONG).show()
-        return false
     }
 }

@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,13 +16,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.fireo.R;
+import com.example.fireo.custom_view.DeviceViewGroup;
 import com.example.fireo.presenter.LocationPresenter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import static com.example.fireo.BaseApplication.currentBuilding;
 
 public class LocationFragment extends Fragment implements View.OnClickListener, LocationPresenter.View {
-    static final String TAG = "LOCATION_FRAGMENT";
+    public static final String TAG = "LOCATION_FRAGMENT";
     View view;
     private DeviceViewGroup deviceViewGroup;
     private ImageButton top, bottom, left, right;
@@ -101,25 +103,8 @@ public class LocationFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-//            case R.id.top:
-//                deviceViewGroup.moveTop();
-//                vibrate();
-//                break;
-//            case R.id.bottom:
-//                deviceViewGroup.moveBottom();
-//                vibrate();
-//                break;
-//            case R.id.left:
-//                deviceViewGroup.moveLeft();
-//                vibrate();
-//                break;
-//            case R.id.right:
-//                deviceViewGroup.moveRight();
-//                vibrate();
-//                break;
-            case R.id.save_device:
-                presenter.saveLocation();
+        if (v.getId() == R.id.save_device) {
+            presenter.saveLocation();
         }
 
     }
@@ -141,6 +126,8 @@ public class LocationFragment extends Fragment implements View.OnClickListener, 
         floorSpinner = view.findViewById(R.id.floor_spinner);
         buildingNameView = view.findViewById(R.id.building_name);
         setClickListeners();
+
+        save.setOnClickListener(this);
 
     }
 }

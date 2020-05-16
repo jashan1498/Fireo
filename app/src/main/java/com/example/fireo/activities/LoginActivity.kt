@@ -1,4 +1,4 @@
-package com.example.fireo
+package com.example.fireo.activities
 
 import android.animation.Animator
 import android.content.Intent
@@ -9,9 +9,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
+import com.example.fireo.BaseApplication
+import com.example.fireo.R
+import com.example.fireo.Utils.LoginHelper
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
-import java.util.regex.Pattern
 
 class LoginActivity : BaseApplication(), View.OnClickListener {
 
@@ -53,8 +55,16 @@ class LoginActivity : BaseApplication(), View.OnClickListener {
         val userEmail = username_edit_text.text.toString()
         val password = pass_edit_text.text.toString()
 
-        val emailValidation = userEmail.length > 6 && validateEmail(userEmail)
+        val emailValidation = userEmail.length > 6 && LoginHelper.validateEmail(userEmail)
         val passwordValidation = password.length > 7
+
+        if (!emailValidation || !passwordValidation) {
+            Toast.makeText(
+                this,
+                this.resources.getString(R.string.invalid_info),
+                Toast.LENGTH_LONG
+            ).show()
+        }
 
         if (emailValidation && passwordValidation) {
             lottieAnim.visibility = View.VISIBLE
@@ -91,16 +101,5 @@ class LoginActivity : BaseApplication(), View.OnClickListener {
                     lottieAnim.pauseAnimation()
                 }
         }
-    }
-
-    private fun validateEmail(userEmail: String): Boolean {
-        val regex = "[a-z|0-9|_%+-]+@[a-z|0-9]+.[a-z|0-9]+"
-        val pattern = Pattern.compile(regex)
-        val matcher = pattern.matcher(userEmail)
-        if (matcher.matches()) {
-            return true
-        }
-        Toast.makeText(this, "Wrong Format For Email", Toast.LENGTH_LONG).show()
-        return false
     }
 }

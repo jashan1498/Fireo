@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.custom_view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,10 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.customview.widget.ViewDragHelper;
 
+import com.example.fireo.R;
+
 public class DeviceViewGroup extends FrameLayout {
     ViewDragHelper viewDragHelper;
     private ImageView imageView;
-    //    private DeviceView deviceView;
     private int jumpValue = 5;
     private LayoutParams params;
 

@@ -1,7 +1,6 @@
 package com.example.fireo.presenter;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -10,9 +9,9 @@ import androidx.annotation.NonNull;
 
 import com.example.fireo.BaseApplication;
 import com.example.fireo.Constants.Constants;
-import com.example.fireo.DeviceView;
-import com.example.fireo.DeviceViewGroup;
-import com.example.fireo.LocationFragment;
+import com.example.fireo.custom_view.DeviceView;
+import com.example.fireo.custom_view.DeviceViewGroup;
+import com.example.fireo.fragments.LocationFragment;
 import com.example.fireo.model.Building;
 import com.example.fireo.model.Device;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -73,7 +72,7 @@ public class LocationPresenter {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        Log.d("blaaaaaa", "success");
+
                     }
                 }
             });

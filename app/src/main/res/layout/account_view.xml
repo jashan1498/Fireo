@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/activity_background"
-    tools:context=".AccountFragment">
+    tools:context=".fragments.AccountFragment">
 
 
     <com.mikhaellopez.circularimageview.CircularImageView
@@ -25,7 +25,7 @@
         android:id="@+id/fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jashan Deep"
+        tools:text="Jashan Deep"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/authority"
         app:layout_constraintEnd_toEndOf="@+id/circularImageView"
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Authority"
+        tools:text="Authority"
         app:layout_constraintEnd_toEndOf="@+id/fullName"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="@+id/fullName"

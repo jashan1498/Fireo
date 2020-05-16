@@ -1,4 +1,4 @@
-package com.example.fireo;
+package com.example.fireo.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.example.fireo.BaseApplication;
 import com.example.fireo.Constants.Constants;
+import com.example.fireo.R;
 import com.example.fireo.Utils.LoginUtils;
 import com.example.fireo.model.Building;
 import com.example.fireo.model.User;
